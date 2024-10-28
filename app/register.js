@@ -2,14 +2,27 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'reac
 import { Link, router } from 'expo-router'
 import React, { useState } from 'react'
 
+
 export default function register() {
 
   const [input, setinput] = useState('');
+
+  const [IsCheck, setIsCheck] = useState(false);
 
 
   const back = ()=>{
       router.back()    
   }
+
+
+  const termsPress = () =>{
+    if(!IsCheck){
+      setIsCheck(true)
+    }else{
+      setIsCheck(false)
+    }
+  }
+
 
 
 
@@ -18,8 +31,12 @@ export default function register() {
 
       <TouchableOpacity style={styles.back} onPress={back}><Image source={require('../assets/imgs/back.png')}/></TouchableOpacity>
 
-      <View style={styles.logo_container}>      
-        <Text style={styles.logo}>Welcome To EasySari<Text style={styles.green_text}>!</Text></Text>
+      <View style={styles.logo_container}>
+        <Image style={styles.logo_img}
+          source={require('../assets/imgs/mini_logo.png')}
+        />
+      
+        <Text style={styles.logo}>Welcome to EazySari<Text style={styles.green_text}>!</Text></Text>
       </View>
 
 
@@ -67,6 +84,17 @@ export default function register() {
           
         </View>
 
+        <View style={styles.pass_req_container}>
+          <Text style={styles.pass_req_header} >Password Requirement</Text>
+          <Text style={styles.pass_req_text}> • Atleast 8 characters <Text style={styles.pass_req_on}>*</Text>  </Text>
+          <Text style={styles.pass_req_text}> • Atleast 1 number <Text style={styles.pass_req_on}>*</Text>  </Text>
+          <Text style={styles.pass_req_text}> • Symbol (? @ #) <Text style={styles.pass_req_on}>*</Text>  </Text>
+          <Text style={styles.pass_req_text}> • Atleast 1 captial letter <Text style={styles.pass_req_on}>*</Text>  </Text>
+          <Text style={styles.pass_req_text}> • Atleast 1 lower letter <Text style={styles.pass_req_on}>*</Text>  </Text>
+        </View>
+
+
+
         <View style={[styles.input , styles.boxShadow]}>
           <Image
               source={require('../assets/imgs/password.png')}
@@ -79,8 +107,35 @@ export default function register() {
           ></TextInput>
         </View>
 
-        <TouchableOpacity style={styles.signin_btn}>
-          <Text style={styles.signin_text}>Sign Up</Text>
+        <Text style={styles.text_from}>Want to join Other Store? Enter Invite Code</Text>
+
+        <View style={[styles.input , styles.boxShadow]}>
+          <Image
+              source={require('../assets/imgs/invite.png')}
+            />
+          <TextInput
+              style={styles.input_box}  
+              placeholder='Invite Code'
+              value={input}
+              onChange={(text)=> setinput(text)}
+          ></TextInput>
+        </View>
+        
+        <View style={styles.terms_condition_container}>
+          <TouchableOpacity style={(IsCheck == false) ? styles.check_box_off : styles.check_box_on} onPress={()=>termsPress()}>
+
+          </TouchableOpacity>
+
+          <Text>I Accept the <Text style={[styles.green_text , styles.underline]}>Terms and Condition</Text></Text>
+
+
+
+        </View>
+
+
+
+        <TouchableOpacity style={styles.signup_btn}>
+          <Text style={styles.signup_text}>Sign Up</Text>
         </TouchableOpacity>
 
         <Text>Don’t have an account? <Link style={[styles.green_text , styles.underline]} href={'/login'}>Sign Up</Link> Now!</Text>
@@ -96,12 +151,62 @@ export default function register() {
 
 const styles = StyleSheet.create({
 
+  check_box_off : {
+    width : 15,
+    height : 15,
+    borderWidth : 1,
+    borderColor : '#B1B1B1'
+  },
+
+  check_box_on : {
+    width : 15,
+    height : 15,
+    borderWidth : 1,
+    borderColor : '#B1B1B1',
+    backgroundColor : '#01A163',
+  },
+
+  terms_condition_container : {
+    marginTop : 20,
+    alignSelf : 'flex-start',
+    flexDirection : 'row',
+    gap : 5,
+    alignItems : 'center',
+  },
+
+  text_from : {
+    marginTop : 10,
+    color : '#808080',   
+    alignSelf : 'flex-start'
+  },
+
+  pass_req_on : {
+    color : '#FD6E67'
+  },
+
+  pass_req_text : {
+    color : '#808080',    
+  },
+
+  pass_req_container : {
+    marginTop : 10,
+    alignSelf : 'flex-start'
+  },
+
+  pass_req_header : { 
+    fontSize : 15,
+    color : '#808080',
+    fontWeight : 'bold'
+  },
+
   back : {
     width : '90%'
   },
 
   Sign_text : {
-    width: '100%'
+    fontSize : 20,
+    width: '100%',
+    color : '#B1B1B1',
   },  
 
   logo_container : {
@@ -113,12 +218,11 @@ const styles = StyleSheet.create({
 
     logo : {
       fontSize : 24,
-      fontWeight : 'semibold',
-      fontFamily : 'poppins'
+      fontWeight : 'bold',
     },  
 
     signin_container :{
-      width : '90%',
+      width : '85%',
       marginTop : 30,
       alignItems : 'center'
     },  
@@ -126,19 +230,19 @@ const styles = StyleSheet.create({
 
     constainer : {
         flex : 1,
-        justifyContent: 'center',
         alignItems : 'center'
     },
 
     input : {
       width : '100%',
-      height : 80,
+      height : 50,
       padding: 10,
       alignItems : 'center',
       gap : 10,
       flexDirection : 'row',
       marginTop : 20,
-      backgroundColor : 'white'
+      backgroundColor : 'white',
+      borderRadius : 10,
     },
 
     input_box : {
@@ -148,14 +252,14 @@ const styles = StyleSheet.create({
     boxShadow : {
       shadowColor : '#000',
       shadowOffset: {
-        width: 5,
-        height: 10,
+        width: 1,
+        height: 3,
       },
-      shadowOpacity: 0.3,
-      shadowRadius: 6,
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
     },  
 
-    signin_btn : {
+    signup_btn : {
       marginTop : 30,
       marginBottom : 20,
       flex : 0,
@@ -163,17 +267,18 @@ const styles = StyleSheet.create({
       alignItems : 'center',
       width : '100%',
       height : 54,
-      backgroundColor : '#9DC869',
+      backgroundColor : '#01A163',
+      borderRadius : 15,
     } ,
 
-    signin_text : {
+    signup_text : {
       color : 'white',
       fontSize : 20,
       fontWeight : 'medium'
     },
 
     green_text: {
-      color : '#9DC869',
+      color : '#01A163',
     },
 
     underline : {
