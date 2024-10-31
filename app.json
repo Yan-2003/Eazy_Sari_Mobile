@@ -2,7 +2,7 @@
   "expo": {
     "name": "eazy_sari_mobile",
     "slug": "eazy_sari_mobile",
-    "scheme" : "eazy_sari_mobile",
+    "scheme": "eazysarimobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -26,6 +26,18 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "07689325-2a8d-4fad-bf27-de7b19a46c7c"
+      }
+    },
+    "owner": "kingramon_kd",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/07689325-2a8d-4fad-bf27-de7b19a46c7c"
+    }
   }
 }

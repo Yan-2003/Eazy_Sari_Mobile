@@ -1,11 +1,20 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import React, { useState } from 'react'
 
 
 export default function login() {
 
   const [input, setinput] = useState('');
+
+
+
+  const login = () =>{
+    router.push({
+      pathname : '/',
+      params : { authuser : true}
+    })
+  } 
 
   return (
     <View style={styles.container}>
@@ -55,7 +64,7 @@ export default function login() {
         
         <TouchableOpacity style={styles.forgot_text}><Text style={styles.underline}>Forgot Password?</Text></TouchableOpacity>
 
-        <TouchableOpacity style={styles.signin_btn}>
+        <TouchableOpacity style={styles.signin_btn} onPress={()=> login() }>
           <Text style={styles.signin_text}>Sign In</Text>
         </TouchableOpacity>
 

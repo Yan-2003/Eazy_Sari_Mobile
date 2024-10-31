@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Link, router } from 'expo-router'
-import { View, Text, StyleSheet } from 'react-native'
-
+import { View, Text, StyleSheet, Image } from 'react-native'
+import Navbar from '../components/Navbar';
+import { useLocalSearchParams } from 'expo-router';
 export default function Home() {
 
+    const authuser = useLocalSearchParams()
+
     const [isReady, setIsReady] = useState(false);
-    const [auth, setAuth] = useState(false); // Adjust this based on your auth logic
+    const [auth, setAuth] = useState(authuser || false ); 
 
     useEffect(() => {
-        // Simulating an authentication check
-        // Replace this with your actual authentication logic
+
         const checkAuth = async () => {
-            // Simulate an API call or async operation
+
             await new Promise(resolve => setTimeout(resolve, 1000));
-            setAuth(false); // Set auth status based on your logic
-            setIsReady(true); // Mark the component as ready
+            setAuth(authuser); 
+            setIsReady(true); 
         };
 
         checkAuth();
@@ -23,7 +25,7 @@ export default function Home() {
     useEffect(() => {
         if (isReady) {
             if (!auth) {
-                router.push('/login'); // Navigate only if ready
+                router.push('/login'); 
             }
         }
     }, [isReady, auth]);
@@ -31,17 +33,33 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-        <Text>EazySari</Text>
-        <Link href={'/login'}>login</Link>
+        <View style={styles.header}>
+            <Image style={styles.header_logo} source={require('../assets/imgs/mini_logo.png')} /> 
+
+        </View>
+
+
+
+        <Navbar />
     </View>
   )
 }
 
 
 const styles = StyleSheet.create({
-    container:{
+
+    header : {
+        width : '95%',
+        alignSelf : 'center',
+        justifyContent : 'space-between'
+    }, 
+
+    header_logo : {
+        width : 40,
+        height : 40,
+    },
+
+    container : {
         flex : 1,
-        justifyContent : "center",
-        alignItems : "center"
     }
 })
