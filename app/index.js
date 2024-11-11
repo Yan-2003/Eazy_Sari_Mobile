@@ -17,7 +17,7 @@ export default function Home() {
 
             await new Promise(resolve => setTimeout(resolve, 1000));
             setAuth(authuser); 
-            setIsReady(true); 
+            setIsReady(false); 
         };
 
         checkAuth();
@@ -30,7 +30,6 @@ export default function Home() {
             }
         }
     }, [isReady, auth]);
-
 
   return (
     <View style={styles.container}>
@@ -58,7 +57,7 @@ export default function Home() {
 
         </View>
 
-        <TouchableOpacity style={styles.best_product_container}>
+        <TouchableOpacity style={styles.best_product_container} onPress={()=> router.push('/best_product')}>
             <View style={styles.best_product_header}>
                 <Text style={styles.best_prouct_text_title}>Best Product</Text>
                 <Image source={require("../assets/imgs/crown.png")} style={styles.crown_img} />
@@ -108,7 +107,7 @@ export default function Home() {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.daily_summary}>
+                <TouchableOpacity style={styles.daily_summary} onPress={()=> router.push('/daily_summary')}>
                     <Image source={require("../assets/imgs/ai.png")} style={styles.ai_img} />
                     <View style={styles.daily_summary_content}>
                         <Image source={require("../assets/imgs/daily_summary_icon.png")} style={styles.daily_summary_img} />

@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
         paddingTop : 10,
         paddingBottom : 10,
         width : '90%',
-        alignSelf : 'center'
+        alignSelf : 'center',
+        backgroundColor : 'white',
     },
 
 
@@ -98,7 +99,8 @@ const styles = StyleSheet.create({
         bottom : 0,
         width : '100%',
         borderTopColor : '#B1B1B1',
-        borderTopWidth : 0.5
+        borderTopWidth : 0.5,
+        backgroundColor : 'white',
     },
     
 })
