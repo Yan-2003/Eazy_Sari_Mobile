@@ -28,13 +28,13 @@ export default function Navbar({ On }) {
                 <Text style={On == 'new transaction' ? styles.text_green : styles.text_gray}> New Transaction </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push('/')}>
-                <Image style={styles.nav_icon} source={require('../assets/imgs/Navbar icon/list-1.png')} />
+            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push('/transaction')}>
+                <Image style={styles.nav_icon}  source={On == 'transaction' ? require('../assets/imgs/Navbar icon/list_light.png') : require('../assets/imgs/Navbar icon/list-1.png')} />
                 <Text style={On == 'transaction' ? styles.text_green : styles.text_gray}> Transaction </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push('/')}>
-                <Image style={styles.nav_icon} source={require('../assets/imgs/Navbar icon/menu-1.png')} />
+            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push('/menu')}>
+                <Image style={styles.nav_icon}  source={On == 'menu' ? require('../assets/imgs/Navbar icon/menu_light.png') : require('../assets/imgs/Navbar icon/menu-1.png')} />
                 <Text style={On == 'menu' ? styles.text_green : styles.text_gray}> Menu </Text>
             </TouchableOpacity>
 

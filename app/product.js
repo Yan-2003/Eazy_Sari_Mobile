@@ -17,16 +17,52 @@ export default function product() {
       price : 15,
       category : 'Food and Snack',
       stock : 15,
-      image : "../assets/imgs/demo_products/pancit_canton.png",
+      image : "pancit_canton",
       discription : ""
     }, 
     {
-      id : 1,
-      name : "Pancit Canton",
-      price : 15,
+      id : 2,
+      name : "Bingo",
+      price : 8,
       category : 'Food and Snack',
-      stock : 15,
-      image : "../assets/imgs/demo_products/pancit_canton.png",
+      stock : 40,
+      image : "bingo",
+      discription : ""
+    },
+    {
+      id : 3,
+      name : "Wafello",
+      price : 16,
+      category : 'Food and Snack',
+      stock : 40,
+      image : "wafello",
+      discription : ""
+    },
+    {
+      id : 4,
+      name : "Rebisco Crakers",
+      price : 8,
+      category : 'Food and Snack',
+      stock : 30,
+      image : "rebisco",
+      discription : ""
+    },
+    {
+      id : 5,
+      name : "Piattos",
+      price : 26,
+      category : 'Food and Snack',
+      stock : 12,
+      image : "piattos",
+      discription : ""
+    },
+    {
+      id : 6,
+      name : "Nova",
+      price : 26,
+      category : 'Food and Snack',
+      stock : 12,
+      image : "nova",
       discription : ""
     }
     
@@ -77,13 +113,16 @@ export default function product() {
       <ScrollView contentContainerStyle={styles.scroll_product}>
         {
           products.map((item, index)=>{
+            
+            console.log("this is the itme: ", item )
+
             return (
               <ProductItem 
                 key={index}
                 product_name={item.name} 
                 product_price={item.price}  
-                prodcut_categ={item.category}
-                
+                product_categ={item.category}
+                product_img={item.image}
                 product_stock={item.stock} 
               />
             )
@@ -134,7 +173,8 @@ const styles = StyleSheet.create({
     flexWrap : 'wrap',
     gap : 10,
     justifyContent : 'space-between',
-    alignSelf : 'center'
+    alignSelf : 'center',
+    paddingBottom : 100,
   },
 
 
