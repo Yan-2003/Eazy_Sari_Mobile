@@ -8,14 +8,6 @@ export default function login() {
   const [input, setinput] = useState('');
 
 
-
-  const login = () =>{
-    router.push({
-      pathname : '/',
-      params : { authuser : true}
-    })
-  } 
-
   return (
     <View style={styles.container}>
 
@@ -184,6 +176,3 @@ const styles = StyleSheet.create({
 
 
 })
-
-
-

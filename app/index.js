@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, router } from 'expo-router'
-import { View, Text, StyleSheet, Image, TouchableOpacity, Systrace, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView} from 'react-native'
 import Navbar from '../components/Navbar';
 import { useLocalSearchParams } from 'expo-router';
 import Searchbar from '../components/Searchbar';
@@ -8,8 +8,11 @@ export default function Home() {
 
     const authuser = useLocalSearchParams()
 
-    const [isReady, setIsReady] = useState(false);
+    const [isReady, setIsReady] = useState(true);
     const [auth, setAuth] = useState(false); 
+
+    const params = useLocalSearchParams();
+    const [storeName, setStoreName] = useState(params.storeName || 'Gwapo Sari-Sari Store');
 
     useEffect(() => {
 
@@ -29,7 +32,7 @@ export default function Home() {
                 router.push('/login'); 
             }
         }
-    }, [isReady, auth]);
+    }, [isReady, auth]); 
 
   return (
     <View style={styles.container}>
@@ -38,7 +41,7 @@ export default function Home() {
             <Searchbar/>
         </View>
 
-        <Text style={styles.store_title} >Gwapo Sari-Sari Store</Text>
+        <Text style={styles.store_title} >{storeName}</Text>
         <Image style={styles.bannder} source={require("../assets/imgs/Navbar icon/store roof.png")} />
         <ScrollView contentContainerStyle={styles.scroll_content}>
             <View style={styles.container_transaction}>
