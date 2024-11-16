@@ -9,7 +9,7 @@ export default function Home() {
     const authuser = useLocalSearchParams()
 
     const [isReady, setIsReady] = useState(true);
-    const [auth, setAuth] = useState(false); 
+    const [auth, setAuth] = useState(true); 
 
     const params = useLocalSearchParams();
     const [storeName, setStoreName] = useState(params.storeName || 'Gwapo Sari-Sari Store');
@@ -81,7 +81,7 @@ export default function Home() {
             </TouchableOpacity>
 
             <View style={styles.tools_content}>
-                <TouchableOpacity style={styles.low_stock}>
+                <TouchableOpacity style={styles.low_stock} onPress={()=> router.push('/low_stock')}>
                     <View style={styles.warning_header}>
                         <Text>Low Stock</Text>
                         <Image source={require('../assets/imgs/warning-sign.png')} style={styles.warning_img} />

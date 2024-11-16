@@ -38,7 +38,11 @@ export default function Register() {
   }
 
   const signUpPress = () => {
-    router.push('/store_name')
+    if (!IsCheck) {
+      alert('Please accept the Terms and Conditions to continue');
+      return;
+    }
+    router.push('/store_name');
   }
 
 

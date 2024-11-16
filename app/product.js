@@ -80,7 +80,7 @@ export default function product() {
       </View>
       <View>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal contentContainerStyle={styles.scroll_categ}>
-          <TouchableOpacity style={styles.categ_item}>
+          <TouchableOpacity style={[styles.categ_item, {backgroundColor: '#4CAF50'}]}>
             <Text>All</Text>
           </TouchableOpacity>
 

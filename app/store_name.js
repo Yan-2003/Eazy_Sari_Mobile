@@ -4,6 +4,7 @@ import { Link, router } from 'expo-router';
 
 const StoreName = () => {
   const [storeName, setStoreName] = useState('');
+  const [error, setError] = useState('');
 
   const back = () => {
     try {
@@ -12,6 +13,21 @@ const StoreName = () => {
       router.replace('/')
     }
   }
+
+  const handleContinue = () => {
+    if (!storeName.trim()) {
+      setError('Please enter a store name');
+      return;
+    }
+    
+    router.push({
+      pathname: "/",
+      params: { 
+        storeName,
+        auth: true
+      }
+    });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -51,36 +67,31 @@ const StoreName = () => {
         <Text style={styles.note}>
           <Text style={styles.boldText}>Note:</Text> when inviting friends, this will be displayed to their account.
         </Text>
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
         <View style={styles.inputWrapper}>
           <Image source={require('../assets/imgs/store.png')} style={styles.storeIcon} />
           <TextInput
             style={styles.input}
             placeholder="Store Name"
             value={storeName}
-            onChangeText={setStoreName}
+            onChangeText={(text) => {
+              setStoreName(text);
+              setError('');
+            }}
           />
         </View>
       </View>
 
       {/* Continue Button */}
-      <Link href={{
-        pathname: '/',
-        params: { storeName: storeName }
-      }} asChild>
-        <TouchableOpacity 
-          style={styles.continueButton}
-          onPress={() => {
-            if (storeName.trim()) {
-              router.push({
-                pathname: "/",
-                params: { storeName }
-              });
-            }
-          }}
-        >
-          <Text style={styles.continueButtonText}>Continue</Text>
-        </TouchableOpacity>
-      </Link>
+      <TouchableOpacity 
+        style={[
+          styles.continueButton,
+          !storeName.trim() && styles.disabledButton
+        ]}
+        onPress={handleContinue}
+      >
+        <Text style={styles.continueButtonText}>Continue</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -197,6 +208,14 @@ const styles = StyleSheet.create({
   boldText: {
     fontWeight: 'bold',
   },
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    marginBottom: 10,
+  },
+  disabledButton: {
+    backgroundColor: '#cccccc',
+  }
 });
 
 export default StoreName;
