@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@react-native-community/checkbox": "^0.5.17",
-    "expo": "~51.0.28",
+    "expo": "^52.0.6",
+    "expo-blur": "~13.0.2",
     "expo-clipboard": "~6.0.3",
     "expo-constants": "~16.0.2",
     "expo-linking": "~6.3.1",
