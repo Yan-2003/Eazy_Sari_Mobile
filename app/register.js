@@ -1,17 +1,31 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import { Link, router } from 'expo-router'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocalSearchParams } from 'expo-router'
 
 
-export default function register() {
+export default function Register() {
+
+  const params = useLocalSearchParams();
 
   const [input, setinput] = useState('');
 
   const [IsCheck, setIsCheck] = useState(false);
 
+  // Add useEffect to handle terms acceptance
+  useEffect(() => {
+    if (params.termsAccepted === 'true') {
+      setIsCheck(true);
+    }
+  }, [params.termsAccepted]);
 
-  const back = ()=>{
-      router.back()    
+
+  const back = () => {
+    try {
+      router.back()
+    } catch (error) {
+      router.push('/')
+    }
   }
 
 
@@ -21,6 +35,10 @@ export default function register() {
     }else{
       setIsCheck(false)
     }
+  }
+
+  const signUpPress = () => {
+    router.push('/store_name')
   }
 
 
@@ -126,7 +144,7 @@ export default function register() {
 
           </TouchableOpacity>
 
-          <Text>I Accept the <Text style={[styles.green_text , styles.underline]}>Terms and Condition</Text></Text>
+          <Text>I Accept the <Link style={[styles.green_text , styles.underline]} href={'/terms_and_cond'}>Terms and Conditions</Link></Text>
 
 
 
@@ -134,11 +152,11 @@ export default function register() {
 
 
 
-        <TouchableOpacity style={styles.signup_btn}>
+        <TouchableOpacity style={styles.signup_btn} onPress={signUpPress}>
           <Text style={styles.signup_text}>Sign Up</Text>
         </TouchableOpacity>
 
-        <Text>Don’t have an account? <Link style={[styles.green_text , styles.underline]} href={'/login'}>Sign Up</Link> Now!</Text>
+        <Text>Already have an account? <Link style={[styles.green_text , styles.underline]} href={'/login'}>Sign In</Link> Now!</Text>
       </View>
 
 
@@ -219,7 +237,12 @@ const styles = StyleSheet.create({
     logo : {
       fontSize : 24,
       fontWeight : 'bold',
-    },  
+    },
+  
+  logo_img : {
+    width : 60,
+    height : 60
+  },
 
     signin_container :{
       width : '85%',
