@@ -23,7 +23,7 @@ export default function Navbar({ On }) {
                 <Text style={On == 'product' ? styles.text_green : styles.text_gray}> Products </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.nav_btn_big}>
+            <TouchableOpacity style={styles.nav_btn_big} onPress={()=>router.push('new_transaction')}>
                 <Image style={styles.nav_icon_big} source={require('../assets/imgs/Navbar icon/plus_light.png')} />
                 <Text style={On == 'new transaction' ? styles.text_green : styles.text_gray}> New Transaction </Text>
             </TouchableOpacity>

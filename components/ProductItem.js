@@ -34,10 +34,15 @@ const styles = StyleSheet.create({
         padding : 10, 
         width : 180,
         height : 210,
-        borderWidth : 1,
         borderRadius : 15,
         backgroundColor : 'white',
-        borderColor : '#808080',
+        shadowColor : '#000',
+        shadowOffset: {
+            width: 1,
+            height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
     },
 
     price : {

@@ -6,9 +6,7 @@ import { useLocalSearchParams } from 'expo-router';
 import Searchbar from '../components/Searchbar';
 export default function Home() {
 
-    const authuser = useLocalSearchParams()
-
-    const [isReady, setIsReady] = useState(false);
+/*     const authuser = useLocalSearchParams()
     const [auth, setAuth] = useState(false); 
 
     useEffect(() => {
@@ -17,19 +15,24 @@ export default function Home() {
 
             await new Promise(resolve => setTimeout(resolve, 1000));
             setAuth(authuser); 
-            setIsReady(false); 
         };
 
         checkAuth();
-    }, []);
+    }, []); */
 
-    useEffect(() => {
-        if (isReady) {
-            if (!auth) {
+
+  /*   useEffect(() => {
+         if (!auth) {
                 router.push('/login'); 
             }
-        }
-    }, [isReady, auth]);
+    }, [isReady, auth]); */
+
+
+  /*   useEffect(() => {
+
+        
+        router.push('/login'); 
+    }, []); */
 
   return (
     <View style={styles.container}>
