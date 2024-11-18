@@ -29,12 +29,9 @@ export default function login() {
   const [password, setpassword] = useState('');
 
 
-<<<<<<< HEAD
   const [Message, setMessage] = useState('');
 
   const login = () =>{
-
-
 
     if(email.length == 0){
       setMessage("Enter your Email.")
@@ -71,8 +68,6 @@ export default function login() {
 
 
 
-=======
->>>>>>> fca63c65c936ec09cf6910f30c309b460c1c85c6
   return (
     <View style={styles.container}>
 
