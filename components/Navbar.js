@@ -3,16 +3,18 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { router } from 'expo-router'
 import { useLocalSearchParams } from 'expo-router'
-export default function Navbar({ On }) {
+export default function Navbar({ On , data}) {
 
 
     const {userdata} = useLocalSearchParams()
 
 
+
+
   return (
     <View style={styles.main}>
         <View style={styles.container}>
-            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push({pathname : '/' , params : {userdata : userdata}})}>
+            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push({pathname : '/' , params : {userdata : userdata || data}})}>
                 <Image style={styles.nav_icon} source={On == 'home' ? require('../assets/imgs/Navbar icon/home_light.png') : require('../assets/imgs/Navbar icon/home-1.png')} />
                 <Text style={On == 'home' ? styles.text_green : styles.text_gray}> Home </Text>
             </TouchableOpacity>

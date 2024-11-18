@@ -76,9 +76,9 @@ export default function transaction() {
             <ScrollView contentContainerStyle={styles.scroll_transaction}>
                 <Text style={styles.date_text}>Today</Text>
                 {
-                    data.map((item)=>{
+                    data.map((item, index)=>{
                         return item.date == "Today" ?  (
-                            <TouchableOpacity key={item.id} style={styles.transaction}>
+                            <TouchableOpacity key={index} style={styles.transaction}>
                                 <View style={styles.info}>
                                     <Image style={styles.users_img} source={require('../assets/imgs/user_2.png')} />
                                     <View>

@@ -57,7 +57,7 @@ export default function Home() {
 
                     </View>
 
-                    <TouchableOpacity style={styles.best_product_container} onPress={()=> router.push( {pathname : '/best_product' , params : {userdata : userdata}})}>
+                    <TouchableOpacity style={styles.best_product_container} onPress={()=> router.push( {pathname : '/best_product' , params : {userdata : user}})}>
                         <View style={styles.best_product_header}>
                             <Text style={styles.best_prouct_text_title}>Best Product</Text>
                             <Image source={require("../assets/imgs/crown.png")} style={styles.crown_img} />

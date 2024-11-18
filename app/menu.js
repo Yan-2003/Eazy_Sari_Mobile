@@ -1,9 +1,13 @@
 import { View, Text, StyleSheet , Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Navbar from '../components/Navbar'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
+
 
 export default function menu() {
+
+    const {userdata} = useLocalSearchParams()
+
   return (
     <View style={styles.container}>
         <View style={styles.profile_info}>
@@ -47,7 +51,7 @@ export default function menu() {
             <View style={styles.store_part}>
                 <Text style={styles.sm_text_gray}>Products</Text>
 
-                <TouchableOpacity style={styles.menu_btn} onPress={()=>router.push('/add_product')}>
+                <TouchableOpacity style={styles.menu_btn} onPress={()=>router.push({pathname : '/add_product' , params : {userdata : userdata}})}>
                     <View style={styles.menu_btn_sub}>
                         <Image style={styles.image_btn} source={require('../assets/imgs/product 1.png')} />
                         <Text style={styles.btn_text}>Add new Product</Text>
@@ -80,7 +84,7 @@ export default function menu() {
 
             </View>
 
-            <TouchableOpacity style={styles.logout_btn}>
+            <TouchableOpacity style={styles.logout_btn} onPress={()=>router.push('/login')}>
                 <Text style={styles.text_light} >Logout</Text>
             </TouchableOpacity>
 
