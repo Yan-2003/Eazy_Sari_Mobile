@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, router } from 'expo-router'
-import { View, Text, StyleSheet, Image, TouchableOpacity, Systrace, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
 import Navbar from '../components/Navbar';
 import { useLocalSearchParams } from 'expo-router';
 import Searchbar from '../components/Searchbar';
