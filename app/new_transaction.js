@@ -7,7 +7,7 @@ import { useLocalSearchParams } from 'expo-router'
 
 export default function new_transaction() {
 
-   const { data } = useLocalSearchParams();
+   const { data, userdata } = useLocalSearchParams();
   
    const images = {
     "pancit_canton": require('../assets/imgs/demo_products/pancit_canton.png'),
@@ -97,7 +97,7 @@ export default function new_transaction() {
 
                 <View style={styles.add_product}>
                     <Text>Add Product</Text>
-                    <TouchableOpacity onPress={()=>router.push({pathname : '/new_transaction_add_product' , params : {data : JSON.stringify(Transaction)} })}>
+                    <TouchableOpacity onPress={()=>router.push({pathname : '/new_transaction_add_product' , params : {data : JSON.stringify(Transaction)}, userdata : userdata })}>
                         <Image style={styles.icon} source={require('../assets/imgs/plus.png')}  />
                     </TouchableOpacity>
                 </View>

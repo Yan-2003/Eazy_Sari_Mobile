@@ -2,9 +2,12 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import { StyleSheet } from 'react-native'
 import React from 'react'
 import Navbar from '../components/Navbar'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 
 export default function daily_summary() {
+
+    const {userdata} = useLocalSearchParams()
+
   return (
     <View style={styles.container}>
         <View style={styles.main_content}> 

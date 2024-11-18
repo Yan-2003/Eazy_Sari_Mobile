@@ -57,7 +57,7 @@ export default function Home() {
 
                     </View>
 
-                    <TouchableOpacity style={styles.best_product_container} onPress={()=> router.push('/best_product')}>
+                    <TouchableOpacity style={styles.best_product_container} onPress={()=> router.push( {pathname : '/best_product' , params : {userdata : userdata}})}>
                         <View style={styles.best_product_header}>
                             <Text style={styles.best_prouct_text_title}>Best Product</Text>
                             <Image source={require("../assets/imgs/crown.png")} style={styles.crown_img} />
@@ -107,7 +107,7 @@ export default function Home() {
                                 </View>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.daily_summary} onPress={()=> router.push('/daily_summary')}>
+                            <TouchableOpacity style={styles.daily_summary} onPress={()=> router.push({pathname : '/daily_summary', params : {userdata : userdata}})}>
                                 <Image source={require("../assets/imgs/ai.png")} style={styles.ai_img} />
                                 <View style={styles.daily_summary_content}>
                                     <Image source={require("../assets/imgs/daily_summary_icon.png")} style={styles.daily_summary_img} />

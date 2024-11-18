@@ -9,7 +9,7 @@ import { useLocalSearchParams } from 'expo-router'
 export default function new_transaction_add_product() {
 
 
-    const { data } = useLocalSearchParams()
+    const { data, userdata } = useLocalSearchParams()
 
 
     const [Transaction, setTransaction] = useState([]);
@@ -44,7 +44,7 @@ export default function new_transaction_add_product() {
 
         router.push({
             pathname: "/new_transaction",
-            params: { data: JSON.stringify(newTransactionData) }
+            params: { data: JSON.stringify(newTransactionData), userdata : userdata }
         });
     };
 
