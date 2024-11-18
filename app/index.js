@@ -9,11 +9,13 @@ export default function Home() {
 
     const {userdata} = useLocalSearchParams()
 
-    const [isLoading, setisLoading] = useState(true);
+    const [isLoading, setisLoading] = useState(false);
 
 
 
     useEffect(() => {
+
+        setisLoading(true)
 
         setTimeout(()=>{
             if(userdata == null){
@@ -21,7 +23,7 @@ export default function Home() {
             }else{
                 setisLoading(false)
             }
-        }, 2000)
+        }, 200)
         
     }, []);
 
@@ -49,7 +51,7 @@ export default function Home() {
 
                         </View>
 
-                        <TouchableOpacity style={styles.transaction_btn} >
+                        <TouchableOpacity style={styles.transaction_btn} onPress={()=> router.push({pathname : '/new_transaction' , params : {userdata : userdata}})} >
                             <Text style={styles.text_light} >New Transaction</Text>
                         </TouchableOpacity>
 
@@ -97,7 +99,7 @@ export default function Home() {
                         </TouchableOpacity>
 
                         <View style={styles.tools_section_2}>
-                            <TouchableOpacity style={styles.total_proucts} onPress={()=> router.push('/product')}>
+                            <TouchableOpacity style={styles.total_proucts} onPress={()=> router.push({pathname : '/product' , params : {userdata : userdata}})}>
                                 <Text>Total Product</Text>
                                 <View style={styles.total_products_content}>
                                     <Image source={require("../assets/imgs/product_icon.png")} style={styles.product_img} />

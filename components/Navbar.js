@@ -2,38 +2,37 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { router } from 'expo-router'
+import { useLocalSearchParams } from 'expo-router'
 export default function Navbar({ On }) {
 
 
-
-
-
+    const {userdata} = useLocalSearchParams()
 
 
   return (
     <View style={styles.main}>
         <View style={styles.container}>
-            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push('/')}>
+            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push({pathname : '/' , params : {userdata : userdata}})}>
                 <Image style={styles.nav_icon} source={On == 'home' ? require('../assets/imgs/Navbar icon/home_light.png') : require('../assets/imgs/Navbar icon/home-1.png')} />
                 <Text style={On == 'home' ? styles.text_green : styles.text_gray}> Home </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push('/product')}>
+            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push({pathname : '/product' , params : {userdata : userdata}})}>
                 <Image style={styles.nav_icon} source={On == 'product' ? require('../assets/imgs/Navbar icon/product_light.png') : require('../assets/imgs/Navbar icon/product-1.png')} />
                 <Text style={On == 'product' ? styles.text_green : styles.text_gray}> Products </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.nav_btn_big} onPress={()=>router.push('new_transaction')}>
+            <TouchableOpacity style={styles.nav_btn_big} onPress={()=>router.push({pathname : 'new_transaction', params : {userdata : userdata}})}>
                 <Image style={styles.nav_icon_big} source={require('../assets/imgs/Navbar icon/plus_light.png')} />
                 <Text style={On == 'new transaction' ? styles.text_green : styles.text_gray}> New Transaction </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push('/transaction')}>
+            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push({pathname : '/transaction' , params : {userdata : userdata}})}>
                 <Image style={styles.nav_icon}  source={On == 'transaction' ? require('../assets/imgs/Navbar icon/list_light.png') : require('../assets/imgs/Navbar icon/list-1.png')} />
                 <Text style={On == 'transaction' ? styles.text_green : styles.text_gray}> Transaction </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push('/menu')}>
+            <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push({pathname :'/menu' , params : {userdata : userdata}})}>
                 <Image style={styles.nav_icon}  source={On == 'menu' ? require('../assets/imgs/Navbar icon/menu_light.png') : require('../assets/imgs/Navbar icon/menu-1.png')} />
                 <Text style={On == 'menu' ? styles.text_green : styles.text_gray}> Menu </Text>
             </TouchableOpacity>
