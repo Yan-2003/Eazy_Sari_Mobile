@@ -1,20 +1,74 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import { Link, router } from 'expo-router'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 export default function login() {
 
-  const [input, setinput] = useState('');
+
+  const users = [
+    {
+      email : 'admin.123@gmail.com',
+      password : 'admin123',
+      data : {
+        rule : "admin",
+        name : "",
+        storename : "",
+
+      }
+    },
+    {
+      email : 'guest.123@gmail.com',
+      password : 'guest123'
+    }
+
+  ]
+
+  const [email, setemail] = useState('');
+
+  const [password, setpassword] = useState('');
 
 
+  const [Message, setMessage] = useState('');
 
   const login = () =>{
-    router.push({
-      pathname : '/',
-      params : { authuser : true}
-    })
+
+
+
+    if(email.length == 0){
+      setMessage("Enter your Email.")
+      return
+    }
+
+    if(password.length == 0){
+      setMessage("Enter your Password.")
+      return
+    }
+    const user = users.find((user) => user.email === email)
+
+    if (user) {
+      if (user.password === password) {
+        console.log("Login successful!")
+        router.push({
+         pathname : '/',
+         params : {userdata : user}, 
+        })
+        setMessage("")
+      } else {
+        setMessage("Password is incorrect.")
+      }
+    } else {
+      setMessage("Email is invalid or not registered.")
+    }
   } 
+
+  useEffect(() => {
+    
+    setMessage('')
+  
+  }, [email, password]);
+
+
 
   return (
     <View style={styles.container}>
@@ -34,8 +88,7 @@ export default function login() {
         <Text style={styles.Sign_text}><Text style={styles.green_text}>Sign In</Text> you’re Account Now!</Text>
 
         <View style={styles.gap}></View>
-
-        {/* this is the Email Input Field */}
+        <Text style={styles.sign_msg}>{Message}</Text>
         <View style={[styles.input , styles.boxShadow]}>
           <Image
             source={require('../assets/imgs/email.png')}
@@ -43,8 +96,8 @@ export default function login() {
           <TextInput
               style={styles.input_box}
               placeholder='Email'
-              value={input}
-              onChange={(text)=> setinput(text)}
+              value={email}
+              onChangeText={text => setemail(text)}
           ></TextInput>
           
         </View>
@@ -56,8 +109,9 @@ export default function login() {
           <TextInput
               style={styles.input_box}  
               placeholder='Password'
-              value={input}
-              onChange={(text)=> setinput(text)}
+              value={password}
+              onChangeText={text => setpassword(text)}
+              secureTextEntry={true}
           ></TextInput>
         </View>
 
@@ -80,6 +134,11 @@ export default function login() {
 }
 
 const styles = StyleSheet.create({
+
+
+  sign_msg : {
+    color : "#FD6E67"
+  },
 
   gap : {
     marginTop : 10,
