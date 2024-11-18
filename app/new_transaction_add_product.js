@@ -142,9 +142,9 @@ export default function new_transaction_add_product() {
             product_name={selectProduct.name} 
             closeFunction={()=>setisModal(false)} 
             functionCall={()=>addProduct()}  
-            quantity_add={()=>setquantity(quantity + 1)} 
-            quantity_minus={()=>setquantity(quantity - 1)} 
-            value={quantity}
+            quantity_add={()=>setquantity(selectProduct.stock == quantity ? quantity : quantity + 1)} 
+            quantity_minus={()=>setquantity(quantity == 1 ? quantity : quantity - 1)} 
+            value={quantity.toString()}
             onChange={(value)=>setquantity(value)}
             />
             : <></>

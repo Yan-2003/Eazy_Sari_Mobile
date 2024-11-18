@@ -28,7 +28,7 @@ export default function AddedProductModal({product_img , product_name, functionC
                     <Text style={styles.text_light_n}>Quantity</Text>
                     <View style={styles.quantity_input_content}>
                         <TouchableOpacity style={styles.quantity_m_btn} onPress={quantity_minus}><Text>-</Text></TouchableOpacity>
-                        <TextInput value={value} onChange={onChange} style={styles.quantity_input} />
+                        <TextInput value={value} onChangeText={onChange} style={styles.quantity_input} keyboardType='numeric' />
                         <TouchableOpacity style={styles.quantity_m_btn} onPress={quantity_add}><Text>+</Text></TouchableOpacity>
                     </View>
                 </View>
