@@ -16,6 +16,7 @@ export default function new_transaction() {
     "rebisco": require('../assets/imgs/demo_products/rebisco-crackers.jpg'),
     "piattos": require('../assets/imgs/demo_products/Piattos-Cheese-40g.png'),
     "nova": require('../assets/imgs/demo_products/Nova-Cheddar-40g.png'),
+    "cobra": require('../assets/imgs/demo_products/cobra.jpg'),
     // Add more images here as needed
     };
 
@@ -159,6 +160,7 @@ const styles = StyleSheet.create({
     cfm_btn : {
         marginTop : 30,
         padding : 10,
+        height : 50,
         width : '70%',
         backgroundColor : '#01A163',
         borderRadius : 10,

@@ -20,6 +20,15 @@ export default function new_transaction_add_product() {
 
     const [quantity, setquantity] = useState(1);
 
+    
+  const [category, setcategory] = useState("All");
+
+  useEffect(() => {
+    
+  
+
+  }, [category]);
+
 
 
     const addProduct = () => {
@@ -55,6 +64,7 @@ export default function new_transaction_add_product() {
         "rebisco": require('../assets/imgs/demo_products/rebisco-crackers.jpg'),
         "piattos": require('../assets/imgs/demo_products/Piattos-Cheese-40g.png'),
         "nova": require('../assets/imgs/demo_products/Nova-Cheddar-40g.png'),
+        "cobra": require('../assets/imgs/demo_products/cobra.jpg'),
         // Add more images here as needed
     };
 
@@ -113,7 +123,17 @@ export default function new_transaction_add_product() {
           stock : 12,
           image : "nova",
           discription : ""
-        }
+        },
+        {
+            id : 7,
+            name : "Cobra Energy Drink",
+            price : 30,
+            category : 'Beverages',
+            stock : 10,
+            image : "cobra",
+            discription : ""
+          }
+          
         
       ]
       
@@ -158,57 +178,60 @@ export default function new_transaction_add_product() {
         </View>
         <View>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal contentContainerStyle={styles.scroll_categ}>
-            <TouchableOpacity style={styles.categ_item}>
-                <Text>All</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setcategory('All')} style={category == 'All' ? styles.categ_selected : styles.categ_item}>
+                    <Text style={category == 'All' ? styles.text_light : null}>All</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.categ_item}>
-                <Text>Food and Snack</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setcategory('Food and Snack')} style={category == 'Food and Snack' ? styles.categ_selected : styles.categ_item}>
+                    <Text  style={category == 'Food and Snack' ? styles.text_light : null}>Food and Snack</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.categ_item}>
-                <Text>Beverages</Text>
-            </TouchableOpacity>
-
-
-            <TouchableOpacity style={styles.categ_item}>
-                <Text>Cooking Essentials</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.categ_item}>
-                <Text>Household Items</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setcategory('Beverages')} style={category == 'Beverages' ? styles.categ_selected : styles.categ_item}>
+                    <Text  style={category == 'Beverages' ? styles.text_light : null}>Beverages</Text>
+                </TouchableOpacity>
 
 
-            <TouchableOpacity style={styles.categ_item}>
-                <Text>Personal Care</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setcategory('Cooking Essentials')} style={category == 'Cooking Essentials' ? styles.categ_selected : styles.categ_item}>
+                    <Text  style={category == 'Cooking Essentials' ? styles.text_light : null}>Cooking Essentials</Text>
+                </TouchableOpacity>
 
+                <TouchableOpacity onPress={()=>setcategory('Household Items')} style={category == 'Household Items' ? styles.categ_selected : styles.categ_item}>
+                    <Text  style={category == 'Household Items' ? styles.text_light : null}>Household Items</Text>
+                </TouchableOpacity>
+
+
+                <TouchableOpacity onPress={()=>setcategory('Personal Care')} style={category == 'Personal Care' ? styles.categ_selected : styles.categ_item}>
+                    <Text  style={category == 'Personal Care' ? styles.text_light : null}>Personal Care</Text>
+                </TouchableOpacity>
             </ScrollView>
         </View>
         <ScrollView contentContainerStyle={styles.scroll_products}>
             {
                 products.map((items)=>{
-                    return (
-                        <View key={items.id} style={styles.product_container}>
-                            <View  style={styles.products_sections}>
-                                <Image style={styles.product_img} source={images[items.image]} /> 
-                                <View>
-                                    <Text style={styles.product_name}>{items.name}</Text>
-                                    <Text style={styles.text_gray}>Stock: {items.stock}</Text>
+
+                    if(category == items.category || category == "All"){
+                        return (
+                            <View key={items.id} style={styles.product_container}>
+                                <View  style={styles.products_sections}>
+                                    <Image style={styles.product_img} source={images[items.image]} /> 
+                                    <View>
+                                        <Text style={styles.product_name}>{items.name}</Text>
+                                        <Text style={styles.text_gray}>Stock: {items.stock}</Text>
+                                    </View>
+                                </View>
+                                <View  style={styles.products_sections}>
+                                    <Text style={styles.price}>₱{items.price}</Text>
+                                    <TouchableOpacity onPress={()=>{
+                                        setSelectProduct(items)
+                                        setisModal(true)
+                                    }}>
+                                        <Image style={styles.icon} source={require('../assets/imgs/plus.png')}  />
+                                    </TouchableOpacity>
                                 </View>
                             </View>
-                            <View  style={styles.products_sections}>
-                                <Text style={styles.price}>₱{items.price}</Text>
-                                <TouchableOpacity onPress={()=>{
-                                    setSelectProduct(items)
-                                    setisModal(true)
-                                }}>
-                                    <Image style={styles.icon} source={require('../assets/imgs/plus.png')}  />
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    )
+                        )
+                    }
+
                 })
             }
         </ScrollView>
@@ -221,6 +244,21 @@ export default function new_transaction_add_product() {
 
 
 const styles = StyleSheet.create({
+    text_light : {
+        color : 'white'
+      },
+    
+      categ_selected : {
+        backgroundColor : '#01A163',
+        borderColor : '#B4B3B3',
+        borderWidth : 1,
+        borderRadius : 5,
+        justifyContent : 'center',
+        alignItems : 'center',
+        padding : 5,
+        color : 'white',
+      },
+    
 
     product_name : {
         fontSize  : 20,

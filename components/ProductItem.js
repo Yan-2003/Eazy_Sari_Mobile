@@ -12,6 +12,7 @@ export default function ProductItem({product_img, product_name, product_price, p
         "rebisco": require('../assets/imgs/demo_products/rebisco-crackers.jpg'),
         "piattos": require('../assets/imgs/demo_products/Piattos-Cheese-40g.png'),
         "nova": require('../assets/imgs/demo_products/Nova-Cheddar-40g.png'),
+        "cobra": require('../assets/imgs/demo_products/cobra.jpg'),
         // Add more images here as needed
     };
 
