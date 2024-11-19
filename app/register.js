@@ -8,7 +8,34 @@ export default function Register() {
 
   const params = useLocalSearchParams();
 
-  const [input, setinput] = useState('');
+  const [name, setname] = useState('');
+
+  const [email, setemail] = useState('');
+
+  const [password, setpassword] = useState('');
+
+  const [cmPassword, setcmPassword] = useState('');
+
+
+  const [inviteCode, setinviteCode] = useState('');
+
+
+  const [message, setmessage] = useState('');
+
+
+
+  /* pass requirement var */
+
+  const [char8, setchar8] = useState(false);
+
+  const [num1, setnum1] = useState(false);
+
+  const [symbol, setsymbol] = useState(false);
+
+  const [capital, setcapital] = useState(false);
+
+  const [lower, setlower] = useState(false);
+
 
   const [IsCheck, setIsCheck] = useState(false);
 
@@ -38,8 +65,83 @@ export default function Register() {
   }
 
   const signUpPress = () => {
+
+    if(name.length == 0){
+      return setmessage('Enter a name.')
+    }
+
+    if(email.length == 0){
+      return setmessage('Enter a email.')
+    }
+
+    if(password.length == 0){
+      return setmessage('Enter a password.')
+    }
+
+    if(cmPassword.length == 0){
+      return setmessage('Enter a confirm password.')
+    }
+
+    if(IsCheck == false){
+      return setmessage('Agree on Terms')
+    }
+
+    if(password != cmPassword){
+      return setmessage('Password did not match.')
+    }
+
+
+    if(char8 != true || num1 != true || symbol != true || capital != true || lower != true){
+      return setmessage('Password is not at minimum requirement.')
+    }
+
     router.push('/store_name')
   }
+
+
+  useEffect(() => {
+    
+    setmessage('')
+    
+  }, [name , email , password , cmPassword]);
+
+
+  useEffect(() => {
+
+    if (/[a-z]/.test(password) == true){
+      setlower(true)
+    }else{
+      setlower(false)
+    }
+
+    if (/[A-Z]/.test(password) == true){
+      setcapital(true)
+    }else{
+      setcapital(false)
+    }
+
+    if (/[!@#$%^&*(),.?":{}|<>_\-+=~`\\[\]\\/]/.test(password) == true){
+      setsymbol(true)
+    }else{
+      setsymbol(false)
+    }
+
+    if (/[0-9]/.test(password) == true){
+      setnum1(true)
+    }else{
+      setnum1(false)
+    }
+
+    if(password.length >= 8){
+      setchar8(true)
+    }else{
+      setchar8(false)
+    }
+    
+
+  
+
+  }, [password]);
 
 
 
@@ -61,8 +163,7 @@ export default function Register() {
 
       <View style={styles.signin_container}>
         <Text style={styles.Sign_text}><Text style={styles.green_text}>Sign Up</Text> An Account in EasySari</Text>
-
-        {/* this is the Email Input Field */}
+        <Text style={styles.sign_msg}>{message}</Text>
         <View style={[styles.input , styles.boxShadow]}>
           <Image
             source={require('../assets/imgs/user.png')}
@@ -70,8 +171,8 @@ export default function Register() {
           <TextInput
               style={styles.input_box}
               placeholder='Name'
-              value={input}
-              onChange={(text)=> setinput(text)}
+              value={name}
+              onChangeText={(text)=> setname(text)}
           ></TextInput>
           
         </View>
@@ -83,8 +184,8 @@ export default function Register() {
           <TextInput
               style={styles.input_box}
               placeholder='Email'
-              value={input}
-              onChange={(text)=> setinput(text)}
+              value={email}
+              onChangeText={(text)=> setemail(text)}
           ></TextInput>
           
         </View>
@@ -96,19 +197,20 @@ export default function Register() {
           <TextInput
               style={styles.input_box}
               placeholder='Password'
-              value={input}
-              onChange={(text)=> setinput(text)}
+              value={password}
+              onChangeText={(text)=> setpassword(text)}
+              secureTextEntry={true}
           ></TextInput>
           
         </View>
 
         <View style={styles.pass_req_container}>
           <Text style={styles.pass_req_header} >Password Requirement</Text>
-          <Text style={styles.pass_req_text}> • Atleast 8 characters <Text style={styles.pass_req_on}>*</Text>  </Text>
-          <Text style={styles.pass_req_text}> • Atleast 1 number <Text style={styles.pass_req_on}>*</Text>  </Text>
-          <Text style={styles.pass_req_text}> • Symbol (? @ #) <Text style={styles.pass_req_on}>*</Text>  </Text>
-          <Text style={styles.pass_req_text}> • Atleast 1 captial letter <Text style={styles.pass_req_on}>*</Text>  </Text>
-          <Text style={styles.pass_req_text}> • Atleast 1 lower letter <Text style={styles.pass_req_on}>*</Text>  </Text>
+          <Text style={styles.pass_req_text}> • Atleast 8 characters {char8 == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
+          <Text style={styles.pass_req_text}> • Atleast 1 number {num1 == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
+          <Text style={styles.pass_req_text}> • Symbol (? @ #) {symbol == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
+          <Text style={styles.pass_req_text}> • Atleast 1 captial letter{capital == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>} </Text>
+          <Text style={styles.pass_req_text}> • Atleast 1 lower letter {lower == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
         </View>
 
 
@@ -120,8 +222,9 @@ export default function Register() {
           <TextInput
               style={styles.input_box}  
               placeholder='Confirm Password'
-              value={input}
-              onChange={(text)=> setinput(text)}
+              value={cmPassword}
+              onChangeText={(text)=> setcmPassword(text)}
+              secureTextEntry={true}
           ></TextInput>
         </View>
 
@@ -134,8 +237,8 @@ export default function Register() {
           <TextInput
               style={styles.input_box}  
               placeholder='Invite Code'
-              value={input}
-              onChange={(text)=> setinput(text)}
+              value={inviteCode}
+              onChangeText={(text)=> setinviteCode(text)}
           ></TextInput>
         </View>
         
@@ -145,9 +248,6 @@ export default function Register() {
           </TouchableOpacity>
 
           <Text>I Accept the <Link style={[styles.green_text , styles.underline]} href={'/terms_and_cond'}>Terms and Conditions</Link></Text>
-
-
-
         </View>
 
 
@@ -168,6 +268,10 @@ export default function Register() {
 }
 
 const styles = StyleSheet.create({
+
+  sign_msg : {
+    color : "#FD6E67"
+  },
 
   check_box_off : {
     width : 15,
