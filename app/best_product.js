@@ -2,8 +2,13 @@ import {Image, View, Text, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import Navbar from '../components/Navbar'
 import BestProductItem from '../components/BestProductItem'
+import { useLocalSearchParams } from 'expo-router'
 
 export default function best_product() {
+
+    const {userdata} = useLocalSearchParams()
+
+
   return (
     <View style={styles.container}>
         <Image style={styles.store_roof_img} source={require('../assets/imgs/Navbar icon/store roof.png')} />
@@ -52,7 +57,7 @@ export default function best_product() {
             />
 
         </ScrollView>
-        <Navbar On={'home'} />
+        <Navbar On={'home'} data={userdata} />
     </View>
   )
 }

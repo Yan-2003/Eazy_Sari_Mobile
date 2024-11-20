@@ -11,15 +11,20 @@ export default function login() {
       email : 'admin.123@gmail.com',
       password : 'admin123',
       data : {
-        rule : "admin",
-        name : "",
-        storename : "",
+        rule : "Admin",
+        name : "Julliane J. Tampus",
+        storename : "Gwapo Sari-Sari Store",
 
       }
     },
     {
       email : 'guest.123@gmail.com',
-      password : 'guest123'
+      password : 'guest123',
+      data : {
+        rule : "Store Keeper",
+        name : "Lizel C. Dacup",
+        storename : "Gwapo Sari-Sari Store"
+      }
     }
 
   ]
@@ -49,7 +54,7 @@ export default function login() {
         console.log("Login successful!")
         router.push({
          pathname : '/',
-         params : {userdata : user}, 
+         params : {userdata : JSON.stringify(user)}, 
         })
         setMessage("")
       } else {
@@ -188,7 +193,7 @@ const styles = StyleSheet.create({
 
     input : {
       width : '100%',
-      height : 50,
+      height : 60,
       padding: 10,
       alignItems : 'center',
       gap : 10,

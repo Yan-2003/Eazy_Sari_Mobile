@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { router } from 'expo-router'
 import { useLocalSearchParams } from 'expo-router'
+import transaction from './transaction'
 
 
 export default function new_transaction() {
@@ -26,6 +27,9 @@ export default function new_transaction() {
    const [Total, setTotal] = useState(0);
 
 
+   const [message, setmessage] = useState('');
+
+
 
    const deleteProduct =(id) =>{
 
@@ -34,8 +38,42 @@ export default function new_transaction() {
    }
 
 
+   const confirm_transaction = () =>{
+        if(Transaction.length == 0) return setmessage('No Products Selected.')
+        
+        console.log(userdata)
+        const user = JSON.parse(userdata)
+        console.log(user)
+
+
+        const transaction_payload = {
+
+            id : 6934677566845574,
+            name : user.data.name,
+            total_ammount: Total,
+            item : [],
+            date : "Today"
+        } 
+
+
+        Transaction.map(item =>{
+            transaction_payload.item.push({
+                name : item.name,
+                price : item.price,
+                quantity : item.quantity,
+            })
+        })
+
+        return router.push({
+            pathname : '/transactionByID',
+            params : {userdata : userdata, transaction_data : JSON.stringify(transaction_payload) }
+        })
+   }
+
 
     useEffect(() => {
+
+        console.log("transaction userdata: ", userdata)
 
 
         if(data != null){
@@ -98,7 +136,7 @@ export default function new_transaction() {
 
                 <View style={styles.add_product}>
                     <Text>Add Product</Text>
-                    <TouchableOpacity onPress={()=>router.push({pathname : '/new_transaction_add_product' , params : {data : JSON.stringify(Transaction)}, userdata : userdata })}>
+                    <TouchableOpacity onPress={()=>router.push({pathname : '/new_transaction_add_product' , params : {userdata : userdata ,data : JSON.stringify(Transaction)}})}>
                         <Image style={styles.icon} source={require('../assets/imgs/plus.png')}  />
                     </TouchableOpacity>
                 </View>
@@ -109,17 +147,24 @@ export default function new_transaction() {
                 <Text>Total</Text>
                 <Text style={styles.total_price}>₱{Total}</Text>
             </View>
-            <TouchableOpacity style={styles.cfm_btn}>
+            <Text style={styles.message}>{message}</Text>
+            <TouchableOpacity style={styles.cfm_btn} onPress={()=>confirm_transaction()}>
                 <Text style={styles.text_light}>Confirm</Text>
             </TouchableOpacity> 
         </View>
-        <Navbar On={'new transaction'} />
+        <Navbar On={'new transaction'} data={userdata} />
     </View>
   )
 }
 
 
 const styles = StyleSheet.create({
+
+    message : {
+        color : '#FD6E67',
+        alignSelf  :'center',
+        padding : 10,
+    },
 
     product_name : {
         fontSize  : 20,

@@ -8,36 +8,43 @@ export default function menu() {
 
     const {userdata} = useLocalSearchParams()
 
+
+    const acc = JSON.parse(userdata)
+
   return (
     <View style={styles.container}>
         <View style={styles.profile_info}>
             <Image style={styles.profile} source={require('../assets/imgs/user/eLBmQ_5f.jpg')} />
-            <Text style={styles.profile_name}>Julliane J. Tampus</Text>
-            <Text style={styles.text_gray}>Admin</Text>
+            <Text style={styles.profile_name}>{acc.data.name}</Text>
+            <Text style={styles.text_gray}>{acc.data.rule}</Text>
         </View>
 
         <View style={styles.content}>
             <View style={styles.store_part}>
                 <Text style={styles.sm_text_gray}>Store name</Text>
                 <View style={styles.edit_store_name}>
-                    <Text style={styles.store_name}>Gwapo Sari-Sari Store</Text>
-                    <Image style={styles.icon} source={require('../assets/imgs/pen.png')} />
+                    <Text style={styles.store_name}>{acc.data.storename}</Text>
+                    {acc.data.rule == "Admin" ? <Image style={styles.icon} source={require('../assets/imgs/pen.png')} /> : <></>}
                 </View>
             </View>
 
 
             <View style={styles.store_part}>
                 <Text style={styles.sm_text_gray}>Users</Text>
+                {
+                    acc.data.rule == "Admin" ? (
+                        
+                        <TouchableOpacity style={styles.menu_btn}>
+                            <View style={styles.menu_btn_sub}>
+                                <Image style={styles.image_btn} source={require('../assets/imgs/user_2.png')} />
+                                <Text style={styles.btn_text}>Mange Users</Text>
+                            </View>
+                            <Image style={styles.image_btn_arrow  } source={require('../assets/imgs/arrow.png')} />
+                        </TouchableOpacity>
+                    ) : <></>
+                }
 
-                <TouchableOpacity style={styles.menu_btn}>
-                    <View style={styles.menu_btn_sub}>
-                        <Image style={styles.image_btn} source={require('../assets/imgs/user_2.png')} />
-                        <Text style={styles.btn_text}>Mange Users</Text>
-                    </View>
-                    <Image style={styles.image_btn_arrow  } source={require('../assets/imgs/arrow.png')} />
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.menu_btn} onPress={()=>router.push('/invite_friends')}>
+                <TouchableOpacity style={styles.menu_btn} onPress={()=>router.push({pathname : '/invite_friends' , params : {userdata : userdata}})}>
                     <View style={styles.menu_btn_sub}>
                         <Image style={styles.image_btn} source={require('../assets/imgs/invitefriend.png')} />
                         <Text style={styles.btn_text}>Invite a friend</Text>
@@ -50,15 +57,20 @@ export default function menu() {
 
             <View style={styles.store_part}>
                 <Text style={styles.sm_text_gray}>Products</Text>
+                {
+                    acc.data.rule == "Admin" ? (
+                        
+                        <TouchableOpacity style={styles.menu_btn} onPress={()=>router.push({pathname : '/add_product' , params : {userdata : userdata}})}>
+                            <View style={styles.menu_btn_sub}>
+                                <Image style={styles.image_btn} source={require('../assets/imgs/product 1.png')} />
+                                <Text style={styles.btn_text}>Add new Product</Text>
+                            </View>
+                            <Image style={styles.image_btn_arrow  } source={require('../assets/imgs/arrow.png')} />
+                        </TouchableOpacity>
 
-                <TouchableOpacity style={styles.menu_btn} onPress={()=>router.push({pathname : '/add_product' , params : {userdata : userdata}})}>
-                    <View style={styles.menu_btn_sub}>
-                        <Image style={styles.image_btn} source={require('../assets/imgs/product 1.png')} />
-                        <Text style={styles.btn_text}>Add new Product</Text>
-                    </View>
-                    <Image style={styles.image_btn_arrow  } source={require('../assets/imgs/arrow.png')} />
-                </TouchableOpacity>
-
+                    ) : <></>
+                }
+                
                 <TouchableOpacity style={styles.menu_btn}>
                     <View style={styles.menu_btn_sub}>
                         <Image style={styles.image_btn} source={require('../assets/imgs/archive.png')} />
@@ -97,7 +109,7 @@ export default function menu() {
 
 
 
-      <Navbar On={'menu'} />
+      <Navbar On={'menu'} data={userdata}/>
     </View>
   )
 }

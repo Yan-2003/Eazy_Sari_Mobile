@@ -92,7 +92,7 @@ export default function daily_summary() {
             </View>
 
         </View>
-        <Navbar On={'home'}/>
+        <Navbar On={'home'} data={userdata}/>
     </View>
   )
 }

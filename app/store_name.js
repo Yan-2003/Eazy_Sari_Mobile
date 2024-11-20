@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
-import { Link, router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 
 const StoreName = () => {
+  
+  const {userdata} = useLocalSearchParams()
+
   const [storeName, setStoreName] = useState('');
 
   const back = () => {
@@ -11,6 +14,23 @@ const StoreName = () => {
     } catch (error) {
       router.replace('/')
     }
+  }
+
+
+  const ContinueBTN = () =>{
+
+    const data = JSON.parse(userdata)
+
+    if(storeName.length != 0){
+
+      data.data.storename = storeName
+
+      router.push({
+        pathname : '/dti_scan', 
+        params : {userdata : JSON.stringify(data)}
+      })
+    }
+
   }
 
   return (
@@ -63,24 +83,12 @@ const StoreName = () => {
       </View>
 
       {/* Continue Button */}
-      <Link href={{
-        pathname: '/',
-        params: { storeName: storeName }
-      }} asChild>
-        <TouchableOpacity 
+      <TouchableOpacity 
           style={styles.continueButton}
-          onPress={() => {
-            if (storeName.trim()) {
-              router.push({
-                pathname: "/",
-                params: { storeName }
-              });
-            }
-          }}
+          onPress={() =>ContinueBTN()}
         >
           <Text style={styles.continueButtonText}>Continue</Text>
         </TouchableOpacity>
-      </Link>
     </SafeAreaView>
   );
 };

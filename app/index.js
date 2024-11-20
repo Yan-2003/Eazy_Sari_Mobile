@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, router } from 'expo-router'
+import { router } from 'expo-router'
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
 import Navbar from '../components/Navbar';
 import { useLocalSearchParams } from 'expo-router';
@@ -15,11 +15,13 @@ export default function Home() {
 
     useEffect(() => {
 
+        console.log('userdata: ', userdata)
+
         setisLoading(true)
 
         setTimeout(()=>{
             if(userdata == null){
-                router.push('/register')
+                router.push('/login')
             }else{
                 setisLoading(false)
             }
@@ -57,7 +59,7 @@ export default function Home() {
 
                     </View>
 
-                    <TouchableOpacity style={styles.best_product_container} onPress={()=> router.push( {pathname : '/best_product' , params : {userdata : user}})}>
+                    <TouchableOpacity style={styles.best_product_container} onPress={()=> router.push( {pathname : '/best_product' , params : {userdata : userdata}})}>
                         <View style={styles.best_product_header}>
                             <Text style={styles.best_prouct_text_title}>Best Product</Text>
                             <Image source={require("../assets/imgs/crown.png")} style={styles.crown_img} />
@@ -121,7 +123,7 @@ export default function Home() {
                 </ScrollView>
             
 
-                <Navbar On={'home'} />
+                <Navbar On={'home'} data={userdata}/>
             </View>
         }
 

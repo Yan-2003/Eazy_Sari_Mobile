@@ -4,9 +4,12 @@ import Navbar from '../components/Navbar'
 import Searchbar from '../components/Searchbar'
 import { StyleSheet } from 'react-native'
 import ProductItem from '../components/ProductItem'
+import { useLocalSearchParams } from 'expo-router'
 
 export default function product() {
 
+
+  const {userdata} = useLocalSearchParams()
 
   const [category, setcategory] = useState("All");
 
@@ -150,7 +153,7 @@ export default function product() {
 
       </ScrollView>
 
-      <Navbar On={"product"} />
+      <Navbar On={"product"} data={userdata} />
     </View>
   )
 }

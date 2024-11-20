@@ -95,7 +95,36 @@ export default function Register() {
       return setmessage('Password is not at minimum requirement.')
     }
 
-    router.push('/store_name')
+
+    const payload_acc = {
+      email : email,
+      password : password,
+      data : {
+        rule : "",
+        name : name,
+        storename : "",
+
+      }
+    }
+
+    if(inviteCode == "GwapoSiJulliane" || inviteCode.length !=0){
+      console.log("acc: ", payload_acc)
+
+      payload_acc.data.storename = "Gwapo Sari Sari Store"
+      payload_acc.data.rule = "Store Keeper"
+      router.push({
+        pathname : '/',
+        params : {userdata : JSON.stringify(payload_acc)},
+      })
+
+    }else{
+      console.log("acc: ", payload_acc)
+      router.push({
+        pathname : '/store_name',
+        params : {userdata : JSON.stringify(payload_acc)},
+      })
+    }
+
   }
 
 
@@ -200,6 +229,7 @@ export default function Register() {
               value={password}
               onChangeText={(text)=> setpassword(text)}
               secureTextEntry={true}
+              autoComplete='off'
           ></TextInput>
           
         </View>
@@ -225,6 +255,7 @@ export default function Register() {
               value={cmPassword}
               onChangeText={(text)=> setcmPassword(text)}
               secureTextEntry={true}
+              autoComplete='off'
           ></TextInput>
         </View>
 

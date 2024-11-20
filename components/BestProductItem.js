@@ -14,9 +14,6 @@ export default function BestProductItem({product_name , product_price, product_s
           : null
         }
 
-
-
-
         <View style={styles.product_content}>
             <View >
               <Text style={styles.price}>₱{product_price}</Text>

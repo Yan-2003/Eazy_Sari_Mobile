@@ -1,12 +1,16 @@
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Navbar from '../components/Navbar'
+import { router, useLocalSearchParams } from 'expo-router'
 
 export default function transaction() {
 
+
+    const { userdata }  = useLocalSearchParams()
+
     const data = [
         {
-            id: 1,
+            id: 1234535235356753,
             name : "Julliane",
             total_ammount: 16,
             item : [
@@ -24,7 +28,7 @@ export default function transaction() {
             date : "Today"
         },
         {
-            id : 2,
+            id : 2234677566845574,
             name : "Julliane",
             total_ammount: 8,
             item : [
@@ -37,7 +41,7 @@ export default function transaction() {
             date : "Today"
         },
         {
-            id : 3,
+            id : 3234343542353345,
             name : "Lizel",
             total_ammount: 26,
             item : [
@@ -50,7 +54,7 @@ export default function transaction() {
             date : "Yesterday"
         },
         {
-            id : 4,
+            id : 4234535356634523,
             name : "Rz",
             total_ammount: 30,
             item : [
@@ -74,59 +78,61 @@ export default function transaction() {
             </View>
 
             <ScrollView contentContainerStyle={styles.scroll_transaction}>
+                {/* Today's Transactions */}
                 <Text style={styles.date_text}>Today</Text>
-                {
-                    data.map((item, index)=>{
-                        return item.date == "Today" ?  (
-                            <TouchableOpacity key={index} style={styles.transaction}>
-                                <View style={styles.info}>
-                                    <Image style={styles.users_img} source={require('../assets/imgs/user_2.png')} />
-                                    <View>
-                                        <Text style={styles.name}>{item.name}</Text>
-                                        <Text style={styles.text_gray} >
-                                            item: {
-                                                item.item.map((item, index)=>{
-                                                    return <Text key={index}>{item.name}, </Text>
-                                                })
-                                            }
-                                        </Text>
-                                    </View>
+                {data
+                    .filter((item) => item.date === "Today")
+                    .map((item) => (
+                        
+                        <TouchableOpacity key={item.id} style={styles.transaction} onPress={()=> router.push({pathname : '/transactionByID' , params : {userdata : userdata, transaction_data : JSON.stringify(item)}})}>
+                            <View style={styles.info}> 
+                                <Image style={styles.users_img} source={require('../assets/imgs/user_2.png')} />
+                                <View>
+                                    <Text style={styles.name}>{item.name}</Text>
+                                    <Text style={styles.text_gray}>
+                                        item:{" "}
+                                        {item.item.map((subItem, index) => (
+                                            <Text key={`${item.id}-subitem-${index}`}>
+                                                {subItem.name}
+                                                {index < item.item.length - 1 ? ", " : ""}
+                                            </Text>
+                                        ))}
+                                    </Text>
                                 </View>
-                                <Text style={styles.total_ammount}>₱{item.total_ammount}</Text>
-                            </TouchableOpacity>
-                        ) : <View></View>
-                    })
-                }
+                            </View>
+                            <Text style={styles.total_ammount}>₱{item.total_ammount}</Text>
+                        </TouchableOpacity>
+                    ))}
 
-
+                {/* Yesterday's Transactions */}
                 <Text style={styles.date_text}>Yesterday</Text>
-                {
-                    data.map((item)=>{
-                        return item.date == "Yesterday" ?  (
-                            <TouchableOpacity style={styles.transaction}>
-                                <View key={item.id} style={styles.info}>
-                                    <Image style={styles.users_img} source={require('../assets/imgs/user_2.png')} />
-                                    <View>
-                                        <Text style={styles.name}>{item.name}</Text>
-                                        <Text style={styles.text_gray} >
-                                            item: {
-                                                item.item.map((item, index)=>{
-                                                    return <Text key={index}>{item.name}, </Text>
-                                                })
-                                            }
-                                        </Text>
-                                    </View>
+                {data
+                    .filter((item) => item.date === "Yesterday")
+                    .map((item) => (
+                        <TouchableOpacity key={item.id} style={styles.transaction} onPress={()=>router.push({pathname : '/transactionByID' , params : {userdata : userdata, transaction_data : JSON.stringify(item)}})}>
+                            <View style={styles.info}>
+                                <Image style={styles.users_img} source={require('../assets/imgs/user_2.png')} />
+                                <View>
+                                    <Text style={styles.name}>{item.name}</Text>
+                                    <Text style={styles.text_gray}>
+                                        item:{" "}
+                                        {item.item.map((subItem, index) => (
+                                            <Text key={`${item.id}-subitem-${index}`}>
+                                                {subItem.name}
+                                                {index < item.item.length - 1 ? ", " : ""}
+                                            </Text>
+                                        ))}
+                                    </Text>
                                 </View>
-                                <Text style={styles.total_ammount}>₱{item.total_ammount}</Text>
-                            </TouchableOpacity>
-                        ) : <View></View>
-                    })
-                }
+                            </View>
+                            <Text style={styles.total_ammount}>₱{item.total_ammount}</Text>
+                        </TouchableOpacity>
+                    ))}
             </ScrollView>
 
 
 
-        <Navbar On={'transaction'}/>
+        <Navbar On={'transaction'} data={userdata}/>
         </View>
     )
 }
@@ -192,7 +198,7 @@ const styles = StyleSheet.create({
     },
 
     header : {
-        width : '95%',
+        width : '90%',
         alignSelf : 'center',
         justifyContent : 'space-between',
         flexDirection : "row",

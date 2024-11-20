@@ -142,6 +142,8 @@ export default function new_transaction_add_product() {
 
       useEffect(() => {
 
+        console.log("add transaction userdata: ", userdata)
+
         if(data != null){
 
             const product = JSON.parse(data)
@@ -237,7 +239,7 @@ export default function new_transaction_add_product() {
         </ScrollView>
 
 
-        <Navbar On={'new transaction'} />
+        <Navbar On={'new transaction'} data={userdata}/>
     </View>
   )
 }

@@ -1,10 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native'
 import React from 'react'
 import Navbar from '../components/Navbar'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import * as Clipboard from 'expo-clipboard';
 export default function invitefriends() {
 
+
+  const {userdata} = useLocalSearchParams()
 
   const intive_code = "HLA8G4L1B9ZX4"
 
@@ -45,7 +47,7 @@ export default function invitefriends() {
       </View>
 
 
-      <Navbar On={'menu'} />
+      <Navbar On={'menu'} data={userdata} />
     </View>
   )
 }
