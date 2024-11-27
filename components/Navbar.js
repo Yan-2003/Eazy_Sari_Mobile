@@ -27,7 +27,7 @@ export default function Navbar({ On , data}) {
 
             <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push({pathname : '/transaction' , params : {userdata : data}})}>
                 <Image style={styles.nav_icon}  source={On == 'transaction' ? require('../assets/imgs/Navbar icon/list_light.png') : require('../assets/imgs/Navbar icon/list-1.png')} />
-                <Text style={On == 'transaction' ? styles.text_green : styles.text_gray}> Transaction </Text>
+                <Text style={On == 'transaction' ? styles.text_green : styles.text_gray}> Logs </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.nav_btn} onPress={()=> router.push({pathname :'/menu' , params : {userdata : data}})}>

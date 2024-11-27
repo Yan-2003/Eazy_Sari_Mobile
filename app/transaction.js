@@ -74,7 +74,7 @@ export default function transaction() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.header_text}>Transactions</Text>
+                <Text style={styles.header_text}>Transactions Logs</Text>
             </View>
 
             <ScrollView contentContainerStyle={styles.scroll_transaction}>

@@ -5,7 +5,7 @@ import Searchbar from '../components/Searchbar'
 import { StyleSheet } from 'react-native'
 import ProductItem from '../components/ProductItem'
 import { useLocalSearchParams } from 'expo-router'
-
+import products from '../database/products'
 export default function product() {
 
 
@@ -19,78 +19,6 @@ export default function product() {
   
 
   }, [category]);
-
-
-  let products = [
-
-    {
-      id : 1,
-      name : "Pancit Canton",
-      price : 15,
-      category : 'Food and Snack',
-      stock : 15,
-      image : "pancit_canton",
-      discription : ""
-    }, 
-    {
-      id : 2,
-      name : "Bingo",
-      price : 8,
-      category : 'Food and Snack',
-      stock : 40,
-      image : "bingo",
-      discription : ""
-    },
-    {
-      id : 3,
-      name : "Wafello",
-      price : 16,
-      category : 'Food and Snack',
-      stock : 40,
-      image : "wafello",
-      discription : ""
-    },
-    {
-      id : 4,
-      name : "Rebisco Crakers",
-      price : 8,
-      category : 'Food and Snack',
-      stock : 30,
-      image : "rebisco",
-      discription : ""
-    },
-    {
-      id : 5,
-      name : "Piattos",
-      price : 26,
-      category : 'Food and Snack',
-      stock : 12,
-      image : "piattos",
-      discription : ""
-    },
-    {
-      id : 6,
-      name : "Nova",
-      price : 26,
-      category : 'Food and Snack',
-      stock : 12,
-      image : "nova",
-      discription : ""
-    },
-    {
-      id : 7,
-      name : "Cobra Energy Drink",
-      price : 30,
-      category : 'Beverages',
-      stock : 10,
-      image : "cobra",
-      discription : ""
-    }
-    
-  ]
-
-
-
 
 
   return (
@@ -139,6 +67,7 @@ export default function product() {
               return (
                 <ProductItem 
                     key={index}
+                    data={JSON.stringify(item)}
                     product_name={item.name} 
                     product_price={item.price}  
                     product_categ={item.category}

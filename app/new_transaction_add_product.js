@@ -5,7 +5,8 @@ import { router } from 'expo-router'
 import Searchbar from '../components/Searchbar'
 import AddedProductModal from '../components/Modal/AddedProductModal'
 import { useLocalSearchParams } from 'expo-router'
-
+import images from '../database/images'
+import products from '../database/products'
 export default function new_transaction_add_product() {
 
 
@@ -56,90 +57,7 @@ export default function new_transaction_add_product() {
             params: { data: JSON.stringify(newTransactionData), userdata : userdata }
         });
     };
-
-    const images = {
-        "pancit_canton": require('../assets/imgs/demo_products/pancit_canton.png'),
-        "wafello": require('../assets/imgs/demo_products/Wafello-Chocolate-Wafer-53.5g.png'),
-        "bingo": require('../assets/imgs/demo_products/SM2025575-1.jpg'),
-        "rebisco": require('../assets/imgs/demo_products/rebisco-crackers.jpg'),
-        "piattos": require('../assets/imgs/demo_products/Piattos-Cheese-40g.png'),
-        "nova": require('../assets/imgs/demo_products/Nova-Cheddar-40g.png'),
-        "cobra": require('../assets/imgs/demo_products/cobra.jpg'),
-        // Add more images here as needed
-    };
-
-    let products = [
-
-        {
-          id : 1,
-          name : "Pancit Canton",
-          price : 15,
-          category : 'Food and Snack',
-          stock : 15,
-          image : "pancit_canton",
-          discription : ""
-        }, 
-        {
-          id : 2,
-          name : "Bingo",
-          price : 8,
-          category : 'Food and Snack',
-          stock : 40,
-          image : "bingo",
-          discription : ""
-        },
-        {
-          id : 3,
-          name : "Wafello",
-          price : 16,
-          category : 'Food and Snack',
-          stock : 40,
-          image : "wafello",
-          discription : ""
-        },
-        {
-          id : 4,
-          name : "Rebisco Crakers",
-          price : 8,
-          category : 'Food and Snack',
-          stock : 30,
-          image : "rebisco",
-          discription : ""
-        },
-        {
-          id : 5,
-          name : "Piattos",
-          price : 26,
-          category : 'Food and Snack',
-          stock : 12,
-          image : "piattos",
-          discription : ""
-        },
-        {
-          id : 6,
-          name : "Nova",
-          price : 26,
-          category : 'Food and Snack',
-          stock : 12,
-          image : "nova",
-          discription : ""
-        },
-        {
-            id : 7,
-            name : "Cobra Energy Drink",
-            price : 30,
-            category : 'Beverages',
-            stock : 10,
-            image : "cobra",
-            discription : ""
-          }
-          
-        
-      ]
-      
-
-
-
+    
       useEffect(() => {
 
         console.log("add transaction userdata: ", userdata)

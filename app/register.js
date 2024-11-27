@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { Link, router } from 'expo-router'
 import React, { useState, useEffect } from 'react'
 import { useLocalSearchParams } from 'expo-router'
@@ -118,6 +118,7 @@ export default function Register() {
       })
 
     }else{
+      payload_acc.data.rule = "Admin"
       console.log("acc: ", payload_acc)
       router.push({
         pathname : '/store_name',
@@ -176,125 +177,128 @@ export default function Register() {
 
 
   return (
-    <View style={styles.constainer}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.constainer}>
 
-      <TouchableOpacity style={styles.back} onPress={back}><Image source={require('../assets/imgs/back.png')}/></TouchableOpacity>
+        <TouchableOpacity style={styles.back} onPress={back}><Image source={require('../assets/imgs/back.png')}/></TouchableOpacity>
 
-      <View style={styles.logo_container}>
-        <Image style={styles.logo_img}
-          source={require('../assets/imgs/mini_logo.png')}
-        />
-      
-        <Text style={styles.logo}>Welcome to EazySari<Text style={styles.green_text}>!</Text></Text>
-      </View>
-
-
-
-      <View style={styles.signin_container}>
-        <Text style={styles.Sign_text}><Text style={styles.green_text}>Sign Up</Text> An Account in EasySari</Text>
-        <Text style={styles.sign_msg}>{message}</Text>
-        <View style={[styles.input , styles.boxShadow]}>
-          <Image
-            source={require('../assets/imgs/user.png')}
+        <View style={styles.logo_container}>
+          <Image style={styles.logo_img}
+            source={require('../assets/imgs/mini_logo.png')}
           />
-          <TextInput
-              style={styles.input_box}
-              placeholder='Name'
-              value={name}
-              onChangeText={(text)=> setname(text)}
-          ></TextInput>
-          
-        </View>
-
-        <View style={[styles.input , styles.boxShadow]}>
-          <Image
-            source={require('../assets/imgs/email.png')}
-          />
-          <TextInput
-              style={styles.input_box}
-              placeholder='Email'
-              value={email}
-              onChangeText={(text)=> setemail(text)}
-          ></TextInput>
-          
-        </View>
-
-        <View style={[styles.input , styles.boxShadow]}>
-          <Image
-            source={require('../assets/imgs/password.png')}
-          />
-          <TextInput
-              style={styles.input_box}
-              placeholder='Password'
-              value={password}
-              onChangeText={(text)=> setpassword(text)}
-              secureTextEntry={true}
-              autoComplete='off'
-          ></TextInput>
-          
-        </View>
-
-        <View style={styles.pass_req_container}>
-          <Text style={styles.pass_req_header} >Password Requirement</Text>
-          <Text style={styles.pass_req_text}> • Atleast 8 characters {char8 == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
-          <Text style={styles.pass_req_text}> • Atleast 1 number {num1 == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
-          <Text style={styles.pass_req_text}> • Symbol (? @ #) {symbol == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
-          <Text style={styles.pass_req_text}> • Atleast 1 captial letter{capital == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>} </Text>
-          <Text style={styles.pass_req_text}> • Atleast 1 lower letter {lower == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
+        
+          <Text style={styles.logo}>Welcome to EazySari<Text style={styles.green_text}>!</Text></Text>
         </View>
 
 
 
-        <View style={[styles.input , styles.boxShadow]}>
-          <Image
+        <View style={styles.signin_container}>
+          <Text style={styles.Sign_text}><Text style={styles.green_text}>Sign Up</Text> An Account in EasySari</Text>
+          <Text style={styles.sign_msg}>{message}</Text>
+          <View style={[styles.input , styles.boxShadow]}>
+            <Image
+              source={require('../assets/imgs/user.png')}
+            />
+            <TextInput
+                style={styles.input_box}
+                placeholder='Name'
+                value={name}
+                onChangeText={(text)=> setname(text)}
+            ></TextInput>
+            
+          </View>
+
+          <View style={[styles.input , styles.boxShadow]}>
+            <Image
+              source={require('../assets/imgs/email.png')}
+            />
+            <TextInput
+                style={styles.input_box}
+                placeholder='Email'
+                value={email}
+                onChangeText={(text)=> setemail(text)}
+            ></TextInput>
+            
+          </View>
+
+          <View style={[styles.input , styles.boxShadow]}>
+            <Image
               source={require('../assets/imgs/password.png')}
             />
-          <TextInput
-              style={styles.input_box}  
-              placeholder='Confirm Password'
-              value={cmPassword}
-              onChangeText={(text)=> setcmPassword(text)}
-              secureTextEntry={true}
-              autoComplete='off'
-          ></TextInput>
-        </View>
+            <TextInput
+                style={styles.input_box}
+                placeholder='Password'
+                value={password}
+                onChangeText={(text)=> setpassword(text)}
+                secureTextEntry={true}
+                autoComplete='off'
+            ></TextInput>
+            
+          </View>
 
-        <Text style={styles.text_from}>Want to join Other Store? Enter Invite Code</Text>
+          <View style={styles.pass_req_container}>
+            <Text style={styles.pass_req_header} >Password Requirement</Text>
+            <Text style={styles.pass_req_text}> • Atleast 8 characters {char8 == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
+            <Text style={styles.pass_req_text}> • Atleast 1 number {num1 == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
+            <Text style={styles.pass_req_text}> • Symbol (? @ #) {symbol == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
+            <Text style={styles.pass_req_text}> • Atleast 1 captial letter{capital == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>} </Text>
+            <Text style={styles.pass_req_text}> • Atleast 1 lower letter {lower == true ? <Text> ✅</Text> : <Text style={styles.pass_req_on}>*</Text>}  </Text>
+          </View>
 
-        <View style={[styles.input , styles.boxShadow]}>
-          <Image
-              source={require('../assets/imgs/invite.png')}
-            />
-          <TextInput
-              style={styles.input_box}  
-              placeholder='Invite Code'
-              value={inviteCode}
-              onChangeText={(text)=> setinviteCode(text)}
-          ></TextInput>
-        </View>
-        
-        <View style={styles.terms_condition_container}>
-          <TouchableOpacity style={(IsCheck == false) ? styles.check_box_off : styles.check_box_on} onPress={()=>termsPress()}>
 
+
+          <View style={[styles.input , styles.boxShadow]}>
+            <Image
+                source={require('../assets/imgs/password.png')}
+              />
+            <TextInput
+                style={styles.input_box}  
+                placeholder='Confirm Password'
+                value={cmPassword}
+                onChangeText={(text)=> setcmPassword(text)}
+                secureTextEntry={true}
+                autoComplete='off'
+            ></TextInput>
+          </View>
+
+          <Text style={styles.text_from}>Want to join Other Store? Enter Invite Code</Text>
+
+          <View style={[styles.input , styles.boxShadow]}>
+            <Image
+                source={require('../assets/imgs/invite.png')}
+              />
+            <TextInput
+                style={styles.input_box}  
+                placeholder='Invite Code'
+                value={inviteCode}
+                onChangeText={(text)=> setinviteCode(text)}
+            ></TextInput>
+          </View>
+          
+          <View style={styles.terms_condition_container}>
+            <TouchableOpacity style={(IsCheck == false) ? styles.check_box_off : styles.check_box_on} onPress={()=>termsPress()}>
+
+            </TouchableOpacity>
+
+            <Text>I Accept the <Link style={[styles.green_text , styles.underline]} href={'/terms_and_cond'}>Terms and Conditions</Link></Text>
+          </View>
+
+
+
+          <TouchableOpacity style={styles.signup_btn} onPress={signUpPress}>
+            <Text style={styles.signup_text}>Sign Up</Text>
           </TouchableOpacity>
 
-          <Text>I Accept the <Link style={[styles.green_text , styles.underline]} href={'/terms_and_cond'}>Terms and Conditions</Link></Text>
+          <Text>Already have an account? <Link style={[styles.green_text , styles.underline]} href={'/login'}>Sign In</Link> Now!</Text>
         </View>
 
 
 
-        <TouchableOpacity style={styles.signup_btn} onPress={signUpPress}>
-          <Text style={styles.signup_text}>Sign Up</Text>
-        </TouchableOpacity>
 
-        <Text>Already have an account? <Link style={[styles.green_text , styles.underline]} href={'/login'}>Sign In</Link> Now!</Text>
+
       </View>
 
-
-
-
-
-    </View>
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -404,7 +408,8 @@ const styles = StyleSheet.create({
     },
 
     input_box : {
-      width : '100%'
+      width : '100%',
+      height : "100%",
     }, 
     
     boxShadow : {

@@ -14,8 +14,7 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "eazy_sari_mobile"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {

@@ -3,25 +3,13 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { router } from 'expo-router'
 import { useLocalSearchParams } from 'expo-router'
-import transaction from './transaction'
+import images from '../database/images'
 
 
 export default function new_transaction() {
 
    const { data, userdata } = useLocalSearchParams();
   
-   const images = {
-    "pancit_canton": require('../assets/imgs/demo_products/pancit_canton.png'),
-    "wafello": require('../assets/imgs/demo_products/Wafello-Chocolate-Wafer-53.5g.png'),
-    "bingo": require('../assets/imgs/demo_products/SM2025575-1.jpg'),
-    "rebisco": require('../assets/imgs/demo_products/rebisco-crackers.jpg'),
-    "piattos": require('../assets/imgs/demo_products/Piattos-Cheese-40g.png'),
-    "nova": require('../assets/imgs/demo_products/Nova-Cheddar-40g.png'),
-    "cobra": require('../assets/imgs/demo_products/cobra.jpg'),
-    // Add more images here as needed
-    };
-
-
    const [Transaction, setTransaction] = useState([]);
 
    const [Total, setTotal] = useState(0);
@@ -134,10 +122,9 @@ export default function new_transaction() {
                 }
 
 
-                <View style={styles.add_product}>
-                    <Text>Add Product</Text>
-                    <TouchableOpacity onPress={()=>router.push({pathname : '/new_transaction_add_product' , params : {userdata : userdata ,data : JSON.stringify(Transaction)}})}>
-                        <Image style={styles.icon} source={require('../assets/imgs/plus.png')}  />
+                <View>
+                    <TouchableOpacity  style={styles.add_product} onPress={()=>router.push({pathname : '/new_transaction_add_product' , params : {userdata : userdata ,data : JSON.stringify(Transaction)}})}>
+                        <Text style={styles.text_light}>Add Product</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -239,11 +226,13 @@ const styles = StyleSheet.create({
     },
 
     add_product : {
+        backgroundColor : "#01A163",
+        padding : 20,
         width : '100%',
         marginTop : 10,
-        flexDirection : 'row',
         alignItems : 'center',
-        justifyContent : 'space-between',
+        justifyContent : 'center',
+        borderRadius : 15,
     },
 
     icon : {

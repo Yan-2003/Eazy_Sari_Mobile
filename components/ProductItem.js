@@ -1,25 +1,14 @@
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { router } from 'expo-router';
+import images from '../database/images';
 
-export default function ProductItem({product_img, product_name, product_price, product_categ, product_stock}) {
-    
-    
-    
-    const images = {
-        "pancit_canton": require('../assets/imgs/demo_products/pancit_canton.png'),
-        "wafello": require('../assets/imgs/demo_products/Wafello-Chocolate-Wafer-53.5g.png'),
-        "bingo": require('../assets/imgs/demo_products/SM2025575-1.jpg'),
-        "rebisco": require('../assets/imgs/demo_products/rebisco-crackers.jpg'),
-        "piattos": require('../assets/imgs/demo_products/Piattos-Cheese-40g.png'),
-        "nova": require('../assets/imgs/demo_products/Nova-Cheddar-40g.png'),
-        "cobra": require('../assets/imgs/demo_products/cobra.jpg'),
-        // Add more images here as needed
-    };
+export default function ProductItem({product_img, product_name, product_price, product_categ, product_stock, data}) {
 
     const imageSource = images[product_img]
     
     return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={()=>router.push({pathname : '/view_product' , params : {product : data}})}> 
         <Image style={styles.img} source={imageSource}/>
         <Text style={styles.price} >₱{product_price}</Text>
         <Text style={styles.name} >{product_name}</Text>
