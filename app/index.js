@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { router } from 'expo-router'
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import Navbar from '../components/Navbar';
 import { useLocalSearchParams } from 'expo-router';
 import Searchbar from '../components/Searchbar';
 import LoadingScreen from '../components/LoadingScreen';
+import SearchModal from '../components/Modal/SearchModal';
 export default function Home() {
 
     const {userdata} = useLocalSearchParams()
 
     const [isLoading, setisLoading] = useState(false);
+
+    const [isSearchModal, setisSearchModal] = useState(false);
 
 
 
@@ -21,7 +24,8 @@ export default function Home() {
 
         setTimeout(()=>{
             if(userdata == null){
-                router.push('/login')
+                //router.push('/login')
+                setisLoading(false)
             }else{
                 setisLoading(false)
             }
@@ -34,97 +38,103 @@ export default function Home() {
     <>
         {
             isLoading ? <LoadingScreen /> : 
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <Image style={styles.header_logo} source={require('../assets/imgs/mini_logo.png')} /> 
-                    <Searchbar/>
+            <TouchableWithoutFeedback onPress={()=>{
+                setisSearchModal(false)
+                Keyboard.dismiss
+            }} >
+                <View style={styles.container}>
+                    <SearchModal close={()=>setisSearchModal(false)} open={isSearchModal}/>
+                    <View style={styles.header}>
+                        <Image style={styles.header_logo} source={require('../assets/imgs/mini_logo.png')} /> 
+                        <Searchbar searchFuncation={()=>setisSearchModal(true)} />
+                    </View>
+
+                    <Text style={styles.store_title} >Gwapo Sari-Sari Store</Text>
+                    <Image style={styles.bannder} source={require("../assets/imgs/Navbar icon/store roof.png")} />
+                    <ScrollView contentContainerStyle={styles.scroll_content}>
+                        <View style={styles.container_transaction}>
+                            <View>
+                                <Text>Today's Total Transaction</Text>
+                                <View style={styles.transaction_counter}>
+                                    <Image source={require("../assets/imgs/transaction.png")} style={styles.transaction_img} />
+                                    <Text style={styles.transaction_counter_text}>250</Text>
+                                </View>
+
+                            </View>
+
+                            <TouchableOpacity style={styles.transaction_btn} onPress={()=> router.push({pathname : '/new_transaction' , params : {userdata : userdata}})} >
+                                <Text style={styles.text_light} >New Transaction</Text>
+                            </TouchableOpacity>
+
+                        </View>
+
+                        <TouchableOpacity style={styles.best_product_container} onPress={()=> router.push( {pathname : '/best_product' , params : {userdata : userdata}})}>
+                            <View style={styles.best_product_header}>
+                                <Text style={styles.best_prouct_text_title}>Best Product</Text>
+                                <Image source={require("../assets/imgs/crown.png")} style={styles.crown_img} />
+                            </View>
+
+                            <View style={styles.best_product_content}>
+                                <View style={styles.best_product_detial}>
+                                    <Text style={styles.price}>₱15</Text>
+                                    <View>
+                                        <Text style={styles.product_name}>Pancit Canton</Text>
+                                        <Text style={styles.sold}>Sold: <Text style={styles.text_green}>200</Text></Text> 
+                                    </View>
+                                </View>
+                                <Image style={styles.best_product_top_img} source={require('../assets/imgs/demo_products/pancit_canton.png')} />
+                            </View>
+
+
+                        </TouchableOpacity>
+
+                        <View style={styles.tools_content}>
+                            <TouchableOpacity style={styles.low_stock}>
+                                <View style={styles.warning_header}>
+                                    <Text>Low Stock</Text>
+                                    <Image source={require('../assets/imgs/warning-sign.png')} style={styles.warning_img} />
+                                </View>
+                                
+                                <View style={styles.low_stock_products}>
+                                    <Image style={styles.low_stock_product_img} source={require("../assets/imgs/demo_products/Nova-Cheddar-40g.png")} />
+                                    <Image style={styles.low_stock_product_img} source={require("../assets/imgs/demo_products/Wafello-Chocolate-Wafer-53.5g.png")} />
+                                    <Image style={styles.low_stock_product_img} source={require("../assets/imgs/demo_products/SM2025575-1.jpg")} />
+                                </View>
+
+                                <View style={styles.view_more}>
+                                    <Text style={styles.text_gray}>View More</Text>
+                                </View>
+
+
+
+                            </TouchableOpacity>
+
+                            <View style={styles.tools_section_2}>
+                                <TouchableOpacity style={styles.total_proucts} onPress={()=> router.push({pathname : '/product' , params : {userdata : userdata}})}>
+                                    <Text>Total Product</Text>
+                                    <View style={styles.total_products_content}>
+                                        <Image source={require("../assets/imgs/product_icon.png")} style={styles.product_img} />
+                                        <Text style={styles.text_green_bold}>500</Text>
+                                    </View>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity style={styles.daily_summary} onPress={()=> router.push({pathname : '/daily_summary', params : {userdata : userdata}})}>
+                                    <Image source={require("../assets/imgs/ai.png")} style={styles.ai_img} />
+                                    <View style={styles.daily_summary_content}>
+                                        <Image source={require("../assets/imgs/daily_summary_icon.png")} style={styles.daily_summary_img} />
+                                        <Text style={styles.text_green_bold_r} >Daily Summary</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+
+
+                        </View>
+                    </ScrollView>
+                
+
+                    <Navbar On={'home'} data={userdata}/>
                 </View>
-
-                <Text style={styles.store_title} >Gwapo Sari-Sari Store</Text>
-                <Image style={styles.bannder} source={require("../assets/imgs/Navbar icon/store roof.png")} />
-                <ScrollView contentContainerStyle={styles.scroll_content}>
-                    <View style={styles.container_transaction}>
-                        <View>
-                            <Text>Today's Total Transaction</Text>
-                            <View style={styles.transaction_counter}>
-                                <Image source={require("../assets/imgs/transaction.png")} style={styles.transaction_img} />
-                                <Text style={styles.transaction_counter_text}>250</Text>
-                            </View>
-
-                        </View>
-
-                        <TouchableOpacity style={styles.transaction_btn} onPress={()=> router.push({pathname : '/new_transaction' , params : {userdata : userdata}})} >
-                            <Text style={styles.text_light} >New Transaction</Text>
-                        </TouchableOpacity>
-
-                    </View>
-
-                    <TouchableOpacity style={styles.best_product_container} onPress={()=> router.push( {pathname : '/best_product' , params : {userdata : userdata}})}>
-                        <View style={styles.best_product_header}>
-                            <Text style={styles.best_prouct_text_title}>Best Product</Text>
-                            <Image source={require("../assets/imgs/crown.png")} style={styles.crown_img} />
-                        </View>
-
-                        <View style={styles.best_product_content}>
-                            <View style={styles.best_product_detial}>
-                                <Text style={styles.price}>₱15</Text>
-                                <View>
-                                    <Text style={styles.product_name}>Pancit Canton</Text>
-                                    <Text style={styles.sold}>Sold: <Text style={styles.text_green}>200</Text></Text> 
-                                </View>
-                            </View>
-                            <Image style={styles.best_product_top_img} source={require('../assets/imgs/demo_products/pancit_canton.png')} />
-                        </View>
-
-
-                    </TouchableOpacity>
-
-                    <View style={styles.tools_content}>
-                        <TouchableOpacity style={styles.low_stock}>
-                            <View style={styles.warning_header}>
-                                <Text>Low Stock</Text>
-                                <Image source={require('../assets/imgs/warning-sign.png')} style={styles.warning_img} />
-                            </View>
-                            
-                            <View style={styles.low_stock_products}>
-                                <Image style={styles.low_stock_product_img} source={require("../assets/imgs/demo_products/Nova-Cheddar-40g.png")} />
-                                <Image style={styles.low_stock_product_img} source={require("../assets/imgs/demo_products/Wafello-Chocolate-Wafer-53.5g.png")} />
-                                <Image style={styles.low_stock_product_img} source={require("../assets/imgs/demo_products/SM2025575-1.jpg")} />
-                            </View>
-
-                            <View style={styles.view_more}>
-                                <Text style={styles.text_gray}>View More</Text>
-                            </View>
-
-
-
-                        </TouchableOpacity>
-
-                        <View style={styles.tools_section_2}>
-                            <TouchableOpacity style={styles.total_proucts} onPress={()=> router.push({pathname : '/product' , params : {userdata : userdata}})}>
-                                <Text>Total Product</Text>
-                                <View style={styles.total_products_content}>
-                                    <Image source={require("../assets/imgs/product_icon.png")} style={styles.product_img} />
-                                    <Text style={styles.text_green_bold}>500</Text>
-                                </View>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity style={styles.daily_summary} onPress={()=> router.push({pathname : '/daily_summary', params : {userdata : userdata}})}>
-                                <Image source={require("../assets/imgs/ai.png")} style={styles.ai_img} />
-                                <View style={styles.daily_summary_content}>
-                                    <Image source={require("../assets/imgs/daily_summary_icon.png")} style={styles.daily_summary_img} />
-                                    <Text style={styles.text_green_bold_r} >Daily Summary</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-
-
-                    </View>
-                </ScrollView>
-            
-
-                <Navbar On={'home'} data={userdata}/>
-            </View>
+            </TouchableWithoutFeedback>
         }
 
     
