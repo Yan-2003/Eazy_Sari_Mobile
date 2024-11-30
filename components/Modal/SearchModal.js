@@ -3,7 +3,9 @@ import React, { useRef,useEffect, useState } from 'react'
 import products from '../../database/products';
 import images from '../../database/images';
 import { router } from 'expo-router';
-export default function SearchModal({open, close}) {
+export default function SearchModal({open, close, userdata}) {
+
+
 
     const inputRef = useRef(null);
 
@@ -58,7 +60,7 @@ export default function SearchModal({open, close}) {
                     <ScrollView  style={styles.result}>
                         {
                             search_products.map((items, index)=>{
-                               return   <TouchableOpacity onPress={()=>router.push({pathname : '/view_product' , params : {product : JSON.stringify(items)}})} style={styles.items} key={index}>
+                               return   <TouchableOpacity onPress={()=>router.push({pathname : '/view_product' , params : {userdata : userdata , product : JSON.stringify(items)}})} style={styles.items} key={index}>
                                             <Image style={styles.image} source={images[items.image]} />
                                             <Text>{items.name}</Text>
                                         </TouchableOpacity>

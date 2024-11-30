@@ -34,7 +34,7 @@ export default function menu() {
                 {
                     acc.data.rule == "Admin" ? (
                         
-                        <TouchableOpacity style={styles.menu_btn}>
+                        <TouchableOpacity style={styles.menu_btn} onPress={()=>router.push  ({pathname: '/user_management', params : {userdata : userdata}})}>
                             <View style={styles.menu_btn_sub}>
                                 <Image style={styles.image_btn} source={require('../assets/imgs/user_2.png')} />
                                 <Text style={styles.btn_text}>Mange Users</Text>

@@ -24,7 +24,7 @@ export default function Home() {
 
         setTimeout(()=>{
             if(userdata == null){
-                //router.push('/login')
+                router.push('/user_management')
                 setisLoading(false)
             }else{
                 setisLoading(false)
@@ -43,7 +43,7 @@ export default function Home() {
                 Keyboard.dismiss
             }} >
                 <View style={styles.container}>
-                    <SearchModal close={()=>setisSearchModal(false)} open={isSearchModal}/>
+                    <SearchModal close={()=>setisSearchModal(false)} open={isSearchModal} userdata={userdata}/>
                     <View style={styles.header}>
                         <Image style={styles.header_logo} source={require('../assets/imgs/mini_logo.png')} /> 
                         <Searchbar searchFuncation={()=>setisSearchModal(true)} />

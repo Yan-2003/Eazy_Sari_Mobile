@@ -3,12 +3,12 @@ import React from 'react'
 import { router } from 'expo-router';
 import images from '../database/images';
 
-export default function ProductItem({product_img, product_name, product_price, product_categ, product_stock, data}) {
+export default function ProductItem({product_img, product_name, product_price, product_categ, product_stock, data, userdata}) {
 
     const imageSource = images[product_img]
     
     return (
-    <TouchableOpacity style={styles.container} onPress={()=>router.push({pathname : '/view_product' , params : {product : data}})}> 
+    <TouchableOpacity style={styles.container} onPress={()=>router.push({pathname : '/view_product' , params : {userdata : userdata, product : data}})}> 
         <Image style={styles.img} source={imageSource}/>
         <Text style={styles.price} >₱{product_price}</Text>
         <Text style={styles.name} >{product_name}</Text>

@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },  
 
     nav_btn : {
-        width : 'auto',
+        flex : 1,
         height : 50,
         alignItems : 'center',
         justifyContent : 'center'
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
         justifyContent :'space-between',
         paddingTop : 10,
         paddingBottom : 10,
-        width : '90%',
         alignSelf : 'center',
         backgroundColor : 'white',
     },

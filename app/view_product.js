@@ -12,15 +12,25 @@ export default function view_product() {
     
     const productdata = JSON.parse(product)
 
+    const user = JSON.parse(userdata)
+
 
   return (
     <View style={styles.container}>
         <View style={styles.header}>
-            <TouchableOpacity onPress={()=> router.back()} >
-                <Image style={styles.back} source={require('../assets/imgs/back.png')}  />
-            </TouchableOpacity>
-            <Text style={styles.title_text}>Products</Text> 
-
+            <View>
+                <TouchableOpacity onPress={()=> router.back()} >
+                    <Image style={styles.back} source={require('../assets/imgs/back.png')}  />
+                </TouchableOpacity>
+                <Text style={styles.title_text}>Products</Text> 
+            </View>
+            {
+                user.data.rule == 'Admin' ? (
+                    <TouchableOpacity>
+                        <Image style={styles.menu_dots} source={require('../assets/imgs/menu_dots.png')} />
+                    </TouchableOpacity>
+                ) : <></>
+            }
         </View>
         <View style={styles.body}>
             <Image style={styles.image} source={images[productdata.image]} /> 
@@ -40,6 +50,11 @@ export default function view_product() {
 }
 
 const styles = StyleSheet.create({
+
+    menu_dots : {
+        
+    },
+
     container : {
         flex :1,
     },
@@ -51,6 +66,9 @@ const styles = StyleSheet.create({
         width : '90%',
         alignSelf : 'center',
         gap : 10,
+        flexDirection : 'row',
+        justifyContent : 'space-between',
+        alignItems : 'center'
     },
     price : {
         color : "#01A163",

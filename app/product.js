@@ -67,6 +67,7 @@ export default function product() {
               return (
                 <ProductItem 
                     key={index}
+                    userdata={userdata}
                     data={JSON.stringify(item)}
                     product_name={item.name} 
                     product_price={item.price}  
