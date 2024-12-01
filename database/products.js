@@ -1,3 +1,5 @@
+/* status = out , low, not */
+
 const products = [
 
     {
@@ -7,7 +9,9 @@ const products = [
       category : 'Food and Snack',
       stock : 15,
       image : "pancit_canton",
-      discription : "Pancit Canton is a popular Filipino stir-fried noodle dish made with wheat noodles, vegetables, and protein like chicken, pork, or shrimp. The dish is seasoned with soy sauce, garlic, onions, and sometimes calamansi (a local citrus fruit), giving it a savory and tangy flavor. It's often garnished with sliced hard-boiled eggs and fried garlic. Pancit Canton is a common meal served at gatherings or celebrations and is loved for its satisfying mix of textures and tastes."
+      discription : "Pancit Canton is a popular Filipino stir-fried noodle dish made with wheat noodles, vegetables, and protein like chicken, pork, or shrimp. The dish is seasoned with soy sauce, garlic, onions, and sometimes calamansi (a local citrus fruit), giving it a savory and tangy flavor. It's often garnished with sliced hard-boiled eggs and fried garlic. Pancit Canton is a common meal served at gatherings or celebrations and is loved for its satisfying mix of textures and tastes.",
+      status : "low",
+      archive : false,
     }, 
     {
       id : 2,
@@ -16,7 +20,9 @@ const products = [
       category : 'Food and Snack',
       stock : 40,
       image : "bingo",
-      discription : ""
+      discription : "",
+      status : "",
+      archive : false,
     },
     {
       id : 3,
@@ -25,7 +31,9 @@ const products = [
       category : 'Food and Snack',
       stock : 40,
       image : "wafello",
-      discription : ""
+      discription : "",
+      status : "",
+      archive : false,
     },
     {
       id : 4,
@@ -34,7 +42,9 @@ const products = [
       category : 'Food and Snack',
       stock : 30,
       image : "rebisco",
-      discription : ""
+      discription : "",
+      status : "",
+      archive : false,
     },
     {
       id : 5,
@@ -43,7 +53,9 @@ const products = [
       category : 'Food and Snack',
       stock : 12,
       image : "piattos",
-      discription : ""
+      discription : "",
+      status : "low",
+      archive : false,
     },
     {
       id : 6,
@@ -52,7 +64,9 @@ const products = [
       category : 'Food and Snack',
       stock : 12,
       image : "nova",
-      discription : ""
+      discription : "",
+      status : "",
+      archive : false,
     },
     {
       id : 7,
@@ -61,7 +75,9 @@ const products = [
       category : 'Beverages',
       stock : 10,
       image : "cobra",
-      discription : ""
+      discription : "",
+      status : "",
+      archive : false,
     },
     {
       id : 8,
@@ -70,7 +86,9 @@ const products = [
       category : 'Food and Snack',
       stock : 50,
       image : "fita",
-      discription : "is a classic, lightly salted, and crispy round cracker beloved for its simple yet satisfying taste. Perfect as a snack on its own, paired with spreads, or enjoyed alongside beverages, Fita's versatility and affordability have made it a staple in households and lunchboxes for generations."
+      discription : "is a classic, lightly salted, and crispy round cracker beloved for its simple yet satisfying taste. Perfect as a snack on its own, paired with spreads, or enjoyed alongside beverages, Fita's versatility and affordability have made it a staple in households and lunchboxes for generations.",
+      status : "low",
+      archive : true,
     },
     {
       id : 9,
@@ -79,16 +97,20 @@ const products = [
       category : 'Cooking Essentials',
       stock : 20,
       image : "magicsarap",
-      discription : "is a popular all-in-one seasoning granule widely used in Filipino kitchens. It enhances the flavor of dishes with a perfect blend of savory spices, giving meals a rich and delicious taste. Ideal for soups, stir-fries, and stews, it’s the secret ingredient to make everyday cooking effortlessly flavorful."
+      discription : "is a popular all-in-one seasoning granule widely used in Filipino kitchens. It enhances the flavor of dishes with a perfect blend of savory spices, giving meals a rich and delicious taste. Ideal for soups, stir-fries, and stews, it’s the secret ingredient to make everyday cooking effortlessly flavorful.",
+      status : "low",
+      archive : false,
     },
     {
       id : 10,
       name : "Crispy Fry",
       price : 25,
       category : 'Cooking Essentials',
-      stock : 20,
+      stock : 0,
       image : "crispyfry",
-      discription : "is a trusted breading mix that makes frying quick and hassle-free. It delivers a perfectly golden, crispy coating to fried chicken, fish, and other dishes. Infused with savory seasonings, it guarantees a crunchy and flavorful bite every time, making it a must-have for deliciously fried meals at home."
+      discription : "is a trusted breading mix that makes frying quick and hassle-free. It delivers a perfectly golden, crispy coating to fried chicken, fish, and other dishes. Infused with savory seasonings, it guarantees a crunchy and flavorful bite every time, making it a must-have for deliciously fried meals at home.",
+      status : "not",
+      archive : false,
     },
     {
       id : 11,
@@ -97,8 +119,166 @@ const products = [
       category : 'Cooking Essentials',
       stock : 5,
       image : "mamasitas",
-      discription : "is a rich and savory sauce made from premium oyster extracts, perfect for enhancing the flavor of stir-fries, marinades, and dipping sauces. Known for its balanced umami taste and smooth texture, it adds a delectable depth to any dish, making it a kitchen essential for authentic Filipino and Asian cooking."
+      discription : "is a rich and savory sauce made from premium oyster extracts, perfect for enhancing the flavor of stir-fries, marinades, and dipping sauces. Known for its balanced umami taste and smooth texture, it adds a delectable depth to any dish, making it a kitchen essential for authentic Filipino and Asian cooking.",
+      status : "out",
+      archive : false,  
+    },
+    {
+      id : 12,
+      name : "Coke Mismo",
+      price : 25,
+      category : 'Beverages',
+      stock : 20,
+      image : "mismo",
+      discription : "Coke Mismo is a compact and convenient version of Coca-Cola, designed for on-the-go enjoyment. With its smaller size and resealable bottle, it offers the same iconic and refreshing Coca-Cola taste, perfect for individuals who want a quick, satisfying drink without committing to a larger bottle. Its portability and practicality make it a popular choice for busy lifestyles, ensuring you can enjoy your favorite beverage anytime, anywhere.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 13,
+      name : "C2 Solo",
+      price : 25,
+      category : 'Beverages',
+      stock : 20,
+      image : "solo",
+      discription : "C2 Solo is a single-serve version of the popular C2 iced tea, crafted for convenience and portability. Offering the same refreshing tea flavor with natural antioxidants, it’s perfect for individuals who want a quick, revitalizing drink on the go. Its compact size makes it easy to carry, providing a healthy and flavorful beverage option for busy lifestyles.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 14,
+      name : "Royal Mismo",
+      price : 25,
+      category : 'Beverages',
+      stock : 20,
+      image : "royal",
+      discription : "Royal Mismo is a convenient, single-serve version of the beloved Royal soft drink, known for its bold and fruity orange flavor. Perfect for those who crave a quick burst of refreshment, its compact and portable size makes it easy to enjoy anytime, anywhere. Royal Mismo delivers the same vibrant taste and fizz in a practical, on-the-go format.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 15,
+      name : "Yakult",
+      price : 12,
+      category : 'Beverages',
+      stock : 30,
+      image : "yakult",
+      discription : "Yakult is a probiotic drink loved for its unique tangy-sweet flavor and health benefits. Packed with billions of Lactobacillus casei Shirota strain probiotics, it supports gut health and aids digestion. Its small, single-serve bottle makes it a convenient and enjoyable choice for boosting your daily wellness, perfect for all ages.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 16,
+      name : "Ajinomoto",
+      price : 3,
+      category : 'Cooking Essentials',
+      stock : 50,
+      image : "vetsin",
+      discription : "Ajinomoto Vetsin is a high-quality monosodium glutamate (MSG) seasoning that enhances the natural flavors of your dishes. Known for its umami-rich taste, it’s a versatile ingredient used in a variety of cuisines to elevate savory meals. Whether you're cooking soups, stir-fries, or marinades, Vetsin adds depth and balance, making every bite more flavorful and satisfying.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 17,
+      name : "SILVER SWAN SOY SAUCE",
+      price : 15,
+      category : 'Cooking Essentials',
+      stock : 30,
+      image : "toyo",
+      discription : "Silver Swan Soy Sauce is a classic and trusted condiment known for its rich, savory flavor that enhances a wide variety of dishes. Made from quality ingredients, it brings out the umami taste in marinades, stir-fries, dips, and stews. Loved by households and professional kitchens alike, Silver Swan Soy Sauce is a versatile staple that elevates every meal with its bold and balanced taste.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 18,
+      name : "SILVER SWAN CANE VINEGAR",
+      price : 15,
+      category : 'Cooking Essentials',
+      stock : 50,
+      image : "suka",
+      discription : "Silver Swan Vinegar is a trusted kitchen staple known for its sharp, tangy flavor and versatile use in cooking. Made from high-quality ingredients, it’s perfect for marinating, pickling, and enhancing the taste of your favorite dishes. Whether used as a key ingredient in recipes or as a dipping sauce, Silver Swan Vinegar adds a bright, zesty touch that elevates every meal.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 19,
+      name : "Neozep",
+      price : 8,
+      category : 'Personal Care',
+      stock : 20,
+      image : "neozep",
+      discription : "Neozep is a trusted over-the-counter medication designed to provide fast and effective relief from common cold symptoms such as nasal congestion, runny nose, sneezing, headache, and fever. Available in various formulations for adults and children, it’s a go-to solution for easing discomfort and helping you get back to your daily activities. Convenient and reliable, Neozep is a staple for cold symptom management.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 20,
+      name : "Sisters",
+      price : 6,
+      category : 'Personal Care',
+      stock : 20,
+      image : "sisters",
+      discription : "Sisters Napkin is a popular brand of feminine hygiene products, offering a range of sanitary napkins designed for comfort and protection. Known for its soft materials and reliable absorbency, Sisters Napkin provides women with the confidence and security they need during their menstrual cycle. The brand emphasizes quality, breathability, and a comfortable fit, making it a trusted choice for many.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 21,
+      name : "Efficascent Oil",
+      price : 6,
+      category : 'Personal Care',
+      stock : 10,
+      image : "haplas",
+      discription : "Efficascent Oil is a popular topical oil known for its soothing and invigorating properties. It is commonly used to relieve muscle and joint pain, as well as headaches, through its combination of menthol, eucalyptus, and other essential oils. Efficascent Oil provides a cooling sensation that helps relax tense muscles and ease discomfort, making it a go-to product for quick relief from everyday aches and pains. It’s also used to promote relaxation and alleviate symptoms of colds or nasal congestion.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 22,
+      name : "Medicol Advance",
+      price : 10,
+      category : 'Personal Care',
+      stock : 20,
+      image : "medicol",
+      discription : "Medicol is a widely recognized pain relief medication, commonly used to relieve mild to moderate pain such as headaches, body aches, and discomfort associated with colds or flu. It typically contains active ingredients like paracetamol (acetaminophen), which helps reduce pain and fever. Medicol is also known for its soothing effect on headaches and other tension-related discomfort, providing quick relief when needed. It’s a trusted choice for those seeking an over-the-counter remedy for general pain and aches.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 23,
+      name : "Cala",
+      price : 8,
+      category : 'Household Items',
+      stock : 20,
+      image : "cala",
+      discription : " brand of laundry soap, widely used for washing clothes. It’s known for its effective cleaning power, especially in removing tough stains and dirt from fabric. Cala laundry soap is popular for its affordability and is available in both bar and liquid forms. It helps maintain the cleanliness and freshness of clothes while being gentle on fabrics, making it a common household choice for everyday laundry needs.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 24,
+      name : "Joy",
+      price : 8,
+      category : 'Household Items',
+      stock : 20,
+      image : "joy",
+      discription : "Joy is a well-known brand of dishwashing liquid that is highly effective in cutting grease and cleaning dishes. With its powerful grease-fighting formula, Joy helps make dishwashing easier by quickly breaking down oils and food residues. It is known for its pleasant fragrance and ability to produce long-lasting suds, making it a favorite choice for households. Joy dishwashing liquid is also gentle on hands, providing a balance of effective cleaning and care for your skin. It’s a reliable and trusted brand for both everyday dishwashing and tough grease removal.",
+      status : "",
+      archive : false,  
+    },
+    {
+      id : 25,
+      name : "Tide",
+      price : 8,
+      category : 'Household Items',
+      stock : 30,
+      image : "tide",
+      discription : "Tide is a leading brand of laundry detergent known for its powerful stain-fighting formula and ability to deliver clean, fresh-smelling clothes. It is widely recognized for its effectiveness in removing tough stains, dirt, and odors, while being gentle on fabrics. Available in various forms such as liquid, powder, and pods, Tide offers options for different laundry needs, including those for high-efficiency washers. Its advanced technology ensures long-lasting freshness and a deep clean with each wash, making it one of the most trusted and popular detergent brands worldwide.",
+      status : "",
+      archive : false,  
     }
+    
+    
     
   ]
 

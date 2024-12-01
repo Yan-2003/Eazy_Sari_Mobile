@@ -10,6 +10,20 @@ const images = {
     "magicsarap": require('../assets/imgs/demo_products/magissarap.jpg'),
     "crispyfry" : require('../assets/imgs/demo_products/crispyfry.jpg'),
     "mamasitas" : require('../assets/imgs/demo_products/mamasitas.jpg'),
+    "mismo" : require('../assets/imgs/demo_products/coke.png'),
+    "solo" : require('../assets/imgs/demo_products/c2.png'),
+    "royal" : require('../assets/imgs/demo_products/royal.png'),
+    "yakult" : require('../assets/imgs/demo_products/yakult.jpg'),
+    "vetsin" : require('../assets/imgs/demo_products/aginomoto.png'),
+    "toyo" : require('../assets/imgs/demo_products/toyo.png'),
+    "suka" : require('../assets/imgs/demo_products/suka.png'),
+    "neozep" : require('../assets/imgs/demo_products/neozep.jpg'),
+    "sisters" : require('../assets/imgs/demo_products/sisters.jpg'),
+    "haplas" : require('../assets/imgs/demo_products/haplas.jpg'),
+    "medicol" : require('../assets/imgs/demo_products/medicol.png'),
+    "cala" : require('../assets/imgs/demo_products/cala.jpg'),
+    "joy" : require('../assets/imgs/demo_products/joy.jpg'),
+    "tide" : require('../assets/imgs/demo_products/tide.png'),
     // Add more images here as needed
 };
 

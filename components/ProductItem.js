@@ -6,10 +6,45 @@ import images from '../database/images';
 export default function ProductItem({product_img, product_name, product_price, product_categ, product_stock, data, userdata}) {
 
     const imageSource = images[product_img]
+
+    const product_data = JSON.parse(data)
     
     return (
     <TouchableOpacity style={styles.container} onPress={()=>router.push({pathname : '/view_product' , params : {userdata : userdata, product : data}})}> 
         <Image style={styles.img} source={imageSource}/>
+        {
+            product_data.status == "low" ? 
+
+            (
+                <View style={styles.status}>
+                    <Image source={require('../assets/imgs/product_status/lowonstock.png')} />
+                </View>
+            )
+
+            : <></>
+        }
+        {
+            product_data.status == "not" ? 
+
+            (
+                <View style={styles.status}>
+                    <Image source={require('../assets/imgs/product_status/notavilable.png')} />
+                </View>
+            )
+
+            : <></>
+        }
+        {
+            product_data.status == "out" ? 
+
+            (
+                <View style={styles.status}>
+                    <Image source={require('../assets/imgs/product_status/phaseout.png')} />
+                </View>
+            )
+
+            : <></>
+        }
         <Text style={styles.price} >₱{product_price}</Text>
         <Text style={styles.name} >{product_name}</Text>
         <Text style={styles.text_sm_gray} >{product_categ}</Text>
@@ -20,10 +55,22 @@ export default function ProductItem({product_img, product_name, product_price, p
 
 
 const styles = StyleSheet.create({
+
+
+    status : {
+        height : '100%',
+        width : '100%',
+        position : 'absolute',
+        alignSelf : 'center',
+        justifyContent : 'center',
+        alignItems : 'center'
+    },
+
     container : {
         padding : 10, 
         width : 180,
-        height : 210,
+        paddingTop : 20,
+        paddingBottom : 20,
         borderRadius : 15,
         backgroundColor : 'white',
         shadowColor : '#000',

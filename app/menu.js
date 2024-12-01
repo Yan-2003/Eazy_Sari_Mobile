@@ -71,7 +71,7 @@ export default function menu() {
                     ) : <></>
                 }
                 
-                <TouchableOpacity style={styles.menu_btn}>
+                <TouchableOpacity style={styles.menu_btn} onPress={()=>router.push({pathname : '/archive_product', params : {userdata : userdata}})}>
                     <View style={styles.menu_btn_sub}>
                         <Image style={styles.image_btn} source={require('../assets/imgs/archive.png')} />
                         <Text style={styles.btn_text}>Archive</Text>
@@ -86,7 +86,7 @@ export default function menu() {
             <View style={styles.store_part}>
                 <Text style={styles.sm_text_gray}>Account</Text>
 
-                <TouchableOpacity style={styles.menu_btn}>
+                <TouchableOpacity style={styles.menu_btn} onPress={()=>router.push({pathname : '/delete_account', params : {userdata  :userdata}})}>
                     <View style={styles.menu_btn_sub}>
                         <Image style={styles.image_btn} source={require('../assets/imgs/del_acc.png')} />
                         <Text style={styles.btn_text}>Delete Account</Text>

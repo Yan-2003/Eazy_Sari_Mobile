@@ -89,7 +89,7 @@ export default function Home() {
                         </TouchableOpacity>
 
                         <View style={styles.tools_content}>
-                            <TouchableOpacity style={styles.low_stock}>
+                            <TouchableOpacity style={styles.low_stock} onPress={()=>router.push({pathname :"/low_product", params : {userdata : userdata}})}>
                                 <View style={styles.warning_header}>
                                     <Text>Low Stock</Text>
                                     <Image source={require('../assets/imgs/warning-sign.png')} style={styles.warning_img} />

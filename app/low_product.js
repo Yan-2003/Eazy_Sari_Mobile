@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native'
 import ProductItem from '../components/ProductItem'
 import { useLocalSearchParams } from 'expo-router'
 import products from '../database/products'
-export default function product() {
+export default function low_product() {
 
 
   const {userdata} = useLocalSearchParams()
@@ -59,11 +59,15 @@ export default function product() {
       </View>
 
 
+
+        <View style={styles.low_stock}>
+            <Text>Low Stocks Products</Text>
+        </View>
       <ScrollView contentContainerStyle={styles.scroll_product}>
         {
           products.map((item, index)=>{
-
-            if((category == item.category && !item.archive) || (category == "All" && !item.archive)){
+            console.log(item)
+            if((category == item.category && !item.archive && item.status == 'low') || (category == "All" && !item.archive && item.status == 'low')){
               return (
                 <ProductItem 
                     key={index}
@@ -114,6 +118,19 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     padding : 5,
   },
+
+  low_stock : {
+        marginLeft : 10,
+        marginTop : 10,
+        width : 150,
+        borderColor : '#B4B3B3',
+        backgroundColor : '#E1FE0A',
+        borderWidth : 1,
+        borderRadius : 5,
+        justifyContent : 'center',
+        alignItems : 'center',
+        padding : 5,
+    },
 
   scroll_categ : {
     flex : 0,
