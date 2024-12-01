@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
-export default function UserModalMenu({open, method, onwhere }) {
+export default function UserModalMenu({open, method, onwhere, removeuser }) {
   return (
     <>
     {
@@ -22,7 +22,7 @@ export default function UserModalMenu({open, method, onwhere }) {
                     </TouchableOpacity>
                 )
             }
-            <TouchableOpacity style={styles.menu_item}>
+            <TouchableOpacity style={styles.menu_item} onPress={removeuser}>
                 <Image source={require('../../assets/imgs/trash.png')} />
                 <Text style={styles.redtext}>Remove User</Text>
             </TouchableOpacity>

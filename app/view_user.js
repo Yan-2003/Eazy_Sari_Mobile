@@ -5,6 +5,7 @@ import { useLocalSearchParams } from 'expo-router'
 import { router } from 'expo-router'
 import UserModalMenu from '../components/Modal/UserModalMenu'
 import GiveFeedbackModal from '../components/Modal/GiveFeedbackModal'
+import DeleteUserModal from '../components/Modal/DeleteUserModal'
 export default function view_user() {
 
     const {userdata , user} = useLocalSearchParams()
@@ -16,6 +17,8 @@ export default function view_user() {
     const [onWhere, setonWhere] = useState('transact');
 
     const [openFeedback, setopenFeedback] = useState(false);
+
+    const [openDeleteUser, setopenDeleteUser] = useState(false);
 
     
 
@@ -48,12 +51,17 @@ export default function view_user() {
         setopenMenu(false)
     }
 
+    const openremoveusermodal = () => {
+        setopenDeleteUser(true)
+        setopenMenu(false)
+    }
 
 
   return (
   <TouchableWithoutFeedback onPress={()=>setopenMenu(false)}>
         <View style={styles.constianer} >
             <GiveFeedbackModal open={openFeedback} user={user_info} closeFunction={()=>setopenFeedback(false)} />
+            <DeleteUserModal open={openDeleteUser} closeFunction={()=>setopenDeleteUser(false)}/>
             <View style={styles.header}>
                 <View>
                     <TouchableOpacity onPress={()=> router.back()} >
@@ -67,7 +75,7 @@ export default function view_user() {
             <View style={styles.info}>
                 <View style={styles.bannder}></View>
                 <TouchableOpacity onPress={()=> openMenu ? setopenMenu(false) : setopenMenu(true)} style={styles.menubtn}><Image source={require('../assets/imgs/white_dots.png')}/></TouchableOpacity>
-                <UserModalMenu open={openMenu} method={()=>switchmode()} onwhere={onWhere} />
+                <UserModalMenu open={openMenu} method={()=>switchmode()} onwhere={onWhere} removeuser={()=>openremoveusermodal()} />
                 <View style={styles.user_info_content}>
                     <Image style={styles.user_image} source={require('../assets/imgs/user/PicsArt_07-10-07.45.13.jpg')} />
                 <View style={styles.info_name}>

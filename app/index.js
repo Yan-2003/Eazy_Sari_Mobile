@@ -24,7 +24,7 @@ export default function Home() {
 
         setTimeout(()=>{
             if(userdata == null){
-                router.push('/user_management')
+                router.push('/login')
                 setisLoading(false)
             }else{
                 setisLoading(false)
